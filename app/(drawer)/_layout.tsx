@@ -3,7 +3,7 @@ import { Drawer } from 'expo-router/drawer'
 
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-import { HeaderButton } from '../../components/HeaderButton'
+import { HeaderButton } from '@/components/HeaderButton'
 
 const DrawerLayout = () => (
   <Drawer>
