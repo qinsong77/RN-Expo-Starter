@@ -1,4 +1,4 @@
-import { ScrollViewStyleReset } from 'expo-router/html';
+import { ScrollViewStyleReset } from 'expo-router/html'
 
 // This file is web-only and used to configure the root HTML for every
 // web page during static rendering.
@@ -9,7 +9,10 @@ export default function Root({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+          httpEquiv="X-UA-Compatible"
+          content="IE=edge"
+        />
 
         {/* 
           This viewport disables scaling which makes the mobile website act more like a native app.
@@ -32,7 +35,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
       </head>
       <body>{children}</body>
     </html>
-  );
+  )
 }
 
 const responsiveBackground = `
@@ -43,4 +46,4 @@ body {
   body {
     background-color: #000;
   }
-}`;
+}`

@@ -1,13 +1,14 @@
-import i18n, { Resource } from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import { initReactI18next } from 'react-i18next'
 
-import { fallbackChecker } from './fallbackChecker';
-import { languageDetector } from './languageDetector';
+import i18n, { Resource } from 'i18next'
+
+import { fallbackChecker } from './fallbackChecker'
+import { languageDetector } from './languageDetector'
 
 type Init18n = {
-  resources: Resource;
-  fallbackLng: string;
-};
+  resources: Resource
+  fallbackLng: string
+}
 
 export const init18n = ({ resources, fallbackLng }: Init18n) => {
   return i18n
@@ -20,5 +21,5 @@ export const init18n = ({ resources, fallbackLng }: Init18n) => {
       interpolation: {
         escapeValue: false,
       },
-    });
-};
+    })
+}

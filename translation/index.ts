@@ -1,6 +1,6 @@
-import { init18n } from 'core/i18n/init';
-import en from 'translation/en.json';
-import fr from 'translation/fr.json';
+import { init18n } from 'core/i18n/init'
+import en from 'translation/en.json'
+import fr from 'translation/fr.json'
 
 export const resources = {
   en: {
@@ -9,12 +9,12 @@ export const resources = {
   fr: {
     translation: fr,
   },
-};
+}
 
-export const fallbackLng = 'en';
+export const fallbackLng = 'en'
 
-export type LanguageCode = keyof typeof resources;
+export type LanguageCode = keyof typeof resources
 
-const i18n = init18n({ resources, fallbackLng });
+const i18n = init18n({ resources, fallbackLng })
 
-export default i18n;
+export default i18n
