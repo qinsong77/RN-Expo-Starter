@@ -1,8 +1,11 @@
 {
-  "button": {
-    "french": "Switch language to French",
-    "english": "Switch language to English"
+  "tabs": {
+    "chat": "chat",
+    "sense": "sense",
+    "setting": "setting"
   },
-  "getStarted": "Open up the code for this screen:",
-  "changeCode": "Change any of the text, save the file, and your app will automatically update."
+  "lang_switch": {
+    "chinese": "切换为中文",
+    "english": "Switch language to Chinese"
+  }
 }

@@ -1,0 +1,11 @@
+{
+  "tabs": {
+    "chat": "对话",
+    "sense": "场景",
+    "setting": "我的"
+  },
+  "lang_switch": {
+    "chinese": "Switch language to English",
+    "english": "切换为中文"
+  }
+}

@@ -5,19 +5,19 @@ import { Button, StyleSheet, View } from 'react-native'
 export const InternalizationExample = () => {
   const { t, i18n } = useTranslation()
 
-  const toggleLanguage = (locale: 'en' | 'fr') => {
+  const toggleLanguage = (locale: 'en' | 'zh') => {
     i18n.changeLanguage(locale)
   }
   return (
     <>
       <View style={styles.content}>
         <Button
-          title={t('button.french')}
-          onPress={() => toggleLanguage('fr')}
+          title={t('lang_switch.english')}
+          onPress={() => toggleLanguage('en')}
         />
         <Button
-          title={t('button.english')}
-          onPress={() => toggleLanguage('en')}
+          title={t('lang_switch.chinese')}
+          onPress={() => toggleLanguage('zh')}
         />
       </View>
     </>

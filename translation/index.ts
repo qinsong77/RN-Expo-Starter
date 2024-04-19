@@ -1,13 +1,14 @@
 import { init18n } from 'core/i18n/init'
 import en from 'translation/en.json'
-import fr from 'translation/fr.json'
+
+import zh from '@/translation/zh.json'
 
 export const resources = {
   en: {
     translation: en,
   },
-  fr: {
-    translation: fr,
+  zh: {
+    translation: zh,
   },
 }
 

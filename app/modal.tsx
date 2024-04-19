@@ -3,17 +3,14 @@ import { Platform } from 'react-native'
 
 import { InternalizationExample } from 'components/InternalizationExample'
 
-import { ScreenContent } from '@/components/ScreenContent'
+import { Container } from '@/components/Container'
 
 export default function Modal() {
   return (
     <>
-      <ScreenContent
-        path="app/modal.tsx"
-        title="Modal"
-      >
+      <Container>
         <InternalizationExample />
-      </ScreenContent>
+      </Container>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </>
   )
