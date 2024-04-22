@@ -7,13 +7,16 @@ import {
   MaterialIcons,
 } from '@expo/vector-icons'
 
+import { useColorTokens } from '@/hooks'
+
 export default function TabLayout() {
   const { t } = useTranslation()
+  const colors = useColorTokens()
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: 'blue',
+        tabBarActiveTintColor: colors.primary,
       }}
     >
       <Tabs.Screen

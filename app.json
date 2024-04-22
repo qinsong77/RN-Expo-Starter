@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "rn-expo-stack",
-    "slug": "rn-expo-stack",
+    "name": "rn-expo-starter",
+    "slug": "rn-expo-starter",
     "version": "1.0.0",
 
-    "scheme": "rn-expo-stack",
+    "scheme": "rn-expo-starter",
     "web": {
       "bundler": "metro",
       "output": "static",
@@ -13,13 +13,12 @@
     "plugins": ["expo-router", "expo-localization"],
     "experiments": {
       "typedRoutes": true,
-
       "tsconfigPaths": true
     },
 
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

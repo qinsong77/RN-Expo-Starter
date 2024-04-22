@@ -6,7 +6,9 @@
     "paths": {
       "@/*": ["./*"],
       "@/components/*": ["components/*"],
-      "@/i18n/*": ["core/i18n/*"]
+      "@/features": ["features/index.ts"],
+      "@/hooks": ["core/hooks/index.ts"],
+      "@/utils": ["core/utils/index.ts"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]

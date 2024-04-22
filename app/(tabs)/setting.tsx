@@ -1,14 +1,13 @@
-import { Stack } from 'expo-router'
 import { Text } from 'react-native'
 
 import { Container } from '@/components/Container'
 import { InternalizationExample } from '@/components/InternalizationExample'
 
-export default function Home() {
+export default function Setting() {
   return (
     <>
       <Container>
-        <Text>setting</Text>
+        <Text className="text-primary">setting</Text>
         <InternalizationExample />
       </Container>
     </>
