@@ -5,6 +5,7 @@
 - Tailwindcss by [nativewind](https://www.nativewind.dev/v4/overview)
 - i18n
 - Dark theme
+- Jest & [React Native Testing Librar](https://callstack.github.io/react-native-testing-library/)
 
 ## Step by steps
 
@@ -16,3 +17,24 @@
 ## Other choices
 
 - style system and ui library [tamagui](https://tamagui.dev/)
+
+## Chore
+
+- install `ts-node` just to support read TypeScript **jest** configuration.
+
+## todo
+
+## E2E test
+
+### test provider & mock
+
+eg:
+
+```ts
+jest.mock('@react-navigation/native', () => {
+  return {
+    ...jest.requireActual('@react-navigation/native'),
+    useNavigation: jest.fn(),
+  }
+})
+```

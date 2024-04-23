@@ -17,4 +17,12 @@ module.exports = {
       { blankLine: 'always', prev: '*', next: ['export', 'function'] },
     ],
   },
+  overrides: [
+    {
+      // Test files only
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:jest/recommended', 'plugin:testing-library/react'],
+      rules: { 'jest/prefer-expect-assertions': 'off' },
+    },
+  ],
 }

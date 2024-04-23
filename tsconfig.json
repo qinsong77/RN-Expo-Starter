@@ -4,11 +4,11 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
       "@/components/*": ["components/*"],
       "@/features": ["features/index.ts"],
       "@/hooks": ["core/hooks/index.ts"],
-      "@/utils": ["core/utils/index.ts"]
+      "@/utils": ["core/utils/index.ts"],
+      "@/*": ["./*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]

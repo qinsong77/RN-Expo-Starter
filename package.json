@@ -5,16 +5,20 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
-    "android": "expo start --android",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prettier:fix": "prettier '**/*.{js,jsx,ts,tsx,json,md}' --write",
-    "ios": "expo start --ios",
-    "start:no-cache": "expo start --clear",
     "start": "expo start",
+    "start:no-cache": "expo start --clear",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
     "web": "expo start --web",
-    "generate:color-token": "node ./convert-colors.js && prettier constant/color.ts --write"
+    "generate:color-token": "node ./convert-colors.js && prettier constant/color.ts --write",
+    "test": "jest",
+    "test:debug": "jest -o --watch --coverage=false",
+    "test:dev": "jest --watch --coverage=false --changedSince=origin/main",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
@@ -48,6 +52,8 @@
     "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/types": "^19.0.3",
+    "@testing-library/react-native": "^12.4.5",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20",
     "@types/react": "^18.2.79",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
@@ -55,12 +61,19 @@
     "eslint": "^8.57.0",
     "eslint-config-universe": "^12.0.0",
     "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^28.2.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
+    "eslint-plugin-testing-library": "^6.2.2",
     "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "jest-expo": "~50.0.4",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "prettier-plugin-packagejson": "^2.5.0",
-    "prettier-plugin-tailwindcss": "^0.5.13"
+    "prettier-plugin-tailwindcss": "^0.5.13",
+    "react-test-renderer": "^18.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "5.3.3"
   },
   "resolutions": {
     "expo-modules-core": "~1.11.0"

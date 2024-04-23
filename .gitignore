@@ -12,7 +12,8 @@ web-build/
 # expo router
 expo-env.d.ts
 
-
+#test
+coverage
 
 ios
 android
