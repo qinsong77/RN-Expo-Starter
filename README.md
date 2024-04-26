@@ -14,6 +14,14 @@
 3. check the commit
 4. Shadcn/ui theme and components
 
+## How to update Expo and react-native
+
+react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/)
+
+1. `pnpm install expo@latest` or `pnpm install expo@next`
+2. `pnpm dlx expo install --fix` `pnpm dlx` = `npx`
+3. check the [Changelog](https://github.com/expo/expo/blob/main/packages/expo/CHANGELOG.md)
+
 ## Other choices
 
 - style system and ui library [tamagui](https://tamagui.dev/)
