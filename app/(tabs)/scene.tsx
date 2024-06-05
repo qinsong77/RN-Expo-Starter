@@ -8,12 +8,7 @@ export default function Scene() {
     <>
       <Container>
         <Text>scene</Text>
-        <Link
-          href="/modal"
-          className="my-3 text-xl text-primary underline"
-        >
-          View modal
-        </Link>
+        <Link href="/modal">View modal</Link>
       </Container>
     </>
   )

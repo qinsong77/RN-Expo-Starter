@@ -10,9 +10,9 @@
 ## Step by steps
 
 1. `pnpm dlx create-expo-stack rn-expo-starter` for init commit
-2. perfect project init setting
-3. check the commit
-4. Shadcn/ui theme and components
+2. Perfect project init setting
+3. Check the commit
+4. Utilize Shadcn/ui theme and components
 
 ## How to update Expo and react-native
 
@@ -21,6 +21,7 @@ react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.e
 1. `pnpm install expo@latest` or `pnpm install expo@next`
 2. `pnpm dlx expo install --fix` `pnpm dlx` = `npx`
 3. check the [Changelog](https://github.com/expo/expo/blob/main/packages/expo/CHANGELOG.md)
+4. Check for any possible known issues: `pnpm dlx expo-doctor@latest`
 
 ## Other choices
 
@@ -32,7 +33,7 @@ react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.e
 
 ## todo
 
-## E2E test
+### E2E test
 
 ### test provider & mock
 

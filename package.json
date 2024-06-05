@@ -2,6 +2,7 @@
   "name": "rn-expo-starter",
   "version": "1.0.0",
   "main": "expo-router/entry",
+  "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
@@ -24,24 +25,24 @@
     "@expo/vector-icons": "^14.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "expo": "51.0.0-preview.6",
-    "expo-constants": "~16.0.1",
+    "expo": "51.0.10",
+    "expo-constants": "~16.0.2",
     "expo-linking": "~6.3.1",
-    "expo-localization": "~15.0.1",
-    "expo-router": "^3.5.3",
+    "expo-localization": "~15.0.3",
+    "expo-router": "^3.5.15",
     "expo-status-bar": "~1.12.1",
-    "expo-system-ui": "~3.0.2",
-    "expo-web-browser": "~13.0.2",
+    "expo-system-ui": "~3.0.5",
+    "expo-web-browser": "~13.0.3",
     "i18next": "^23.7.20",
     "nativewind": "^4.0.36",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-i18next": "^14.0.1",
-    "react-native": "0.74.0",
-    "react-native-gesture-handler": "~2.16.0",
-    "react-native-reanimated": "3.9.0-rc.1",
-    "react-native-safe-area-context": "^4.8.2",
-    "react-native-screens": "3.31.0-rc.1",
+    "react-native": "0.74.1",
+    "react-native-gesture-handler": "~2.16.2",
+    "react-native-reanimated": "3.10.1",
+    "react-native-safe-area-context": "4.10.1",
+    "react-native-screens": "3.31.1",
     "react-native-web": "~0.19.10",
     "tailwind-merge": "^2.2.2",
     "tailwindcss": "^3.4.3",
@@ -55,7 +56,7 @@
     "@testing-library/react-native": "^12.4.5",
     "@types/jest": "^29.5.12",
     "@types/node": "^20",
-    "@types/react": "^18.2.79",
+    "@types/react": "^18.3.1",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.7.0",
     "eslint": "^8.57.0",
@@ -71,26 +72,12 @@
     "prettier": "^3.2.5",
     "prettier-plugin-packagejson": "^2.5.0",
     "prettier-plugin-tailwindcss": "^0.5.13",
-    "react-test-renderer": "^18.2.0",
+    "react-test-renderer": "^18.3.1",
     "ts-node": "^10.9.2",
-    "typescript": "5.4.5"
-  },
-  "resolutions": {
-    "expo-modules-core": "~1.11.0"
-  },
-  "overrides": {
-    "expo-modules-core": "~1.11.0"
-  },
-  "expo": {
-    "install": {
-      "exclude": [
-        "react-native-safe-area-context"
-      ]
-    }
+    "typescript": "5.3.3"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": "eslint --fix",
     "*.{js,css,md,ts,tsx,jsx}": "prettier --write"
-  },
-  "private": true
+  }
 }
