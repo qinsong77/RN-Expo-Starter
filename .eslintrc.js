@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['universe/native'],
+  extends: ['expo'],
   plugins: ['simple-import-sort'],
   rules: {
     'simple-import-sort/imports': [

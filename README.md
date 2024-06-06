@@ -18,14 +18,15 @@
 
 react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/)
 
-1. `pnpm install expo@latest` or `pnpm install expo@next`
-2. `pnpm dlx expo install --fix` `pnpm dlx` = `npx`
+1. `bun install expo@latest` or `bun install expo@next`
+2. `bunx expo install --fix` `bunx` = `npx`
 3. check the [Changelog](https://github.com/expo/expo/blob/main/packages/expo/CHANGELOG.md)
-4. Check for any possible known issues: `pnpm dlx expo-doctor@latest`
+4. Check for any possible known issues: `bunx expo-doctor@latest`
 
 ## Other choices
 
 - style system and ui library [tamagui](https://tamagui.dev/)
+- [react-native-ui-lib](https://github.com/wix/react-native-ui-lib)
 
 ## Chore
 
