@@ -1,7 +1,8 @@
 module.exports = {
-  extends: ['expo'],
-  plugins: ['simple-import-sort'],
+  extends: ['expo', 'prettier'],
+  plugins: ['simple-import-sort', 'prettier'],
   rules: {
+    'prettier/prettier': 'error',
     'simple-import-sort/imports': [
       'error',
       {

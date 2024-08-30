@@ -19,7 +19,7 @@
 react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/)
 
 1. `bun install expo@latest` or `bun install expo@next`
-2. `bunx expo install --fix` `bunx` = `npx`
+2. `bunx expo install --fix` (`bunx` = `npx`)
 3. check the [Changelog](https://github.com/expo/expo/blob/main/packages/expo/CHANGELOG.md)
 4. Check for any possible known issues: `bunx expo-doctor@latest`
 
