@@ -1,5 +1,4 @@
 import { Stack } from 'expo-router'
-import { useColorScheme } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import {
@@ -32,13 +31,14 @@ const overwriteDefaultTheme: typeof DefaultTheme = {
 }
 
 export default function RootLayout() {
-  const scheme = useColorScheme()
-  // compatible with web, because above useColorScheme not working on web, react-navigation will not change on web
+  // compatible with web, because above useColorScheme(from 'react-native') not working on web, react-navigation will not change on web
   const { colorScheme: colorSchemeTw } = useColorSchemeTw()
-  console.log('theme', scheme)
+  console.log('theme', colorSchemeTw)
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <ThemeProvider
+        value={colorSchemeTw === 'dark' ? DarkTheme : DefaultTheme}
+      >
         <Stack>
           <Stack.Screen
             name="(tabs)"

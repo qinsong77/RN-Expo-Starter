@@ -9,10 +9,10 @@
 
 ## Step by steps
 
-1. `pnpm dlx create-expo-stack rn-expo-starter` for init commit
+1. `pnpm dlx create-expo-stack rn-expo-starter` for init commit, base on [create-expo-stack](https://github.com/roninoss/create-expo-stack).
 2. Perfect project init setting
 3. Check the commit
-4. Utilize Shadcn/ui theme and components
+4. Utilize shadcn/ui theme and components
 
 ## How to update Expo and react-native
 
@@ -27,6 +27,23 @@ react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.e
 
 - style system and ui library [tamagui](https://tamagui.dev/)
 - [react-native-ui-lib](https://github.com/wix/react-native-ui-lib)
+
+## General Guidelines
+
+### 动画
+
+- [reanimated](https://github.com/software-mansion/react-native-reanimated/)
+
+### UI components
+
+build the UI components inspired by shadcn/ui, refer from:
+
+- [react-native-reusables](https://github.com/mrzachnugent/react-native-reusables) Universal shadcn/ui for React Native featuring a focused collection of components - Crafted with NativeWind v4 and accessibility in mind.
+- [nativecn-ui](https://github.com/Mobilecn-UI/nativecn-ui)
+
+### Notes
+
+- Don't wrap your whole app in SafeAreaView, instead apply the styles to content inside your screens, from: [reactnavigation-summary](https://reactnavigation.org/docs/handling-safe-area/#summary)
 
 ## Chore
 

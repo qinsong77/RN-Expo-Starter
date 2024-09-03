@@ -1,6 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+
+import { Button } from '@/components/ui'
 
 export const InternalizationExample = () => {
   const { t, i18n } = useTranslation()
@@ -9,22 +11,15 @@ export const InternalizationExample = () => {
     i18n.changeLanguage(locale)
   }
   return (
-    <>
-      <View style={styles.content}>
-        <Button
-          title={t('lang_switch.english')}
-          onPress={() => toggleLanguage('en')}
-        />
-        <Button
-          title={t('lang_switch.chinese')}
-          onPress={() => toggleLanguage('zh')}
-        />
-        <Text className="text-primary">Current language: {i18n.language}</Text>
-      </View>
-    </>
+    <View>
+      <Button
+        className="my-4"
+        label={t('lang_switch')}
+        onPress={() => toggleLanguage(i18n.language === 'zh' ? 'en' : 'zh')}
+      />
+      <Text className="text-primary">
+        Current language: {i18n.language.toUpperCase()}
+      </Text>
+    </View>
   )
 }
-
-export const styles = StyleSheet.create({
-  content: { gap: 20, padding: 20 },
-})

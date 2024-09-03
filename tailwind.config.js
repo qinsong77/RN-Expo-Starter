@@ -2,13 +2,13 @@ const { hairlineWidth } = require('nativewind/theme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './index.{js,ts,tsx}',
     './app/**/*.{js,ts,tsx}',
     './components/**/*.{js,ts,tsx}',
     './features/**/*.{js,ts,tsx}',
   ],
-  darkMode: 'class',
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
@@ -46,6 +46,13 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+      },
+      borderRadius: {
+        sm: 'calc(var(--radius) - 4px)',
+        DEFAULT: 'calc(var(--radius) - 2px)',
+        md: 'var(--radius)',
+        lg: 'calc(var(--radius) + 2px)',
+        xl: 'calc(var(--radius) + 4px)',
       },
       borderWidth: {
         hairline: hairlineWidth(),

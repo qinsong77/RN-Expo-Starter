@@ -16,9 +16,10 @@ const buttonVariants = cva(
         link: 'text-primary underline-offset-4',
       },
       size: {
-        default: 'h-10 px-4',
-        sm: 'h-8 px-2',
-        lg: 'h-12 px-8',
+        default: 'h-10 px-4 py-2 native:h-12 native:px-5 native:py-3',
+        sm: 'h-9 rounded-md px-3',
+        lg: 'h-11 rounded-md px-8 native:h-14',
+        icon: 'h-10 w-10',
       },
     },
     defaultVariants: {
@@ -41,6 +42,7 @@ const buttonTextVariants = cva('text-center font-medium', {
       default: 'text-base',
       sm: 'text-sm',
       lg: 'text-xl',
+      icon: '',
     },
   },
   defaultVariants: {

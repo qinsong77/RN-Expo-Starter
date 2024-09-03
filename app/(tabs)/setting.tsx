@@ -5,11 +5,9 @@ import { InternalizationExample } from '@/components/InternalizationExample'
 
 export default function Setting() {
   return (
-    <>
-      <Container>
-        <Text className="text-primary">setting</Text>
-        <InternalizationExample />
-      </Container>
-    </>
+    <Container>
+      <Text className="text-primary">setting</Text>
+      <InternalizationExample />
+    </Container>
   )
 }

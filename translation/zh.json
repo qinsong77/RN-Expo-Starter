@@ -5,8 +5,5 @@
     "setting": "我的"
   },
   "greeting": "你好呀!",
-  "lang_switch": {
-    "chinese": "Switch language to English",
-    "english": "切换为中文"
-  }
+  "lang_switch": "Switch language to English"
 }

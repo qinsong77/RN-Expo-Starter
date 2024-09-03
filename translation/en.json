@@ -5,8 +5,5 @@
     "setting": "setting"
   },
   "greeting": "hello, word!",
-  "lang_switch": {
-    "chinese": "切换为中文",
-    "english": "Switch language to Chinese"
-  }
+  "lang_switch": "切换为中文"
 }

@@ -35,7 +35,7 @@
     "expo-system-ui": "~3.0.7",
     "expo-web-browser": "~13.0.3",
     "i18next": "^23.14.0",
-    "nativewind": "^4.0.36",
+    "nativewind": "^4.1.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^15.0.1",
