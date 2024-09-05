@@ -6,6 +6,10 @@
 - i18n
 - Dark theme
 - Jest & [React Native Testing Librar](https://callstack.github.io/react-native-testing-library/)
+- authentication
+  - sign in, sign up
+  - process as guest
+  - protect route and action
 
 ## Step by steps
 
@@ -33,6 +37,12 @@ react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.e
 ### 动画
 
 - [reanimated](https://github.com/software-mansion/react-native-reanimated/)
+- [lottie](https://github.com/lottie-react-native/lottie-react-native)
+  - [resource-lottiefiles](https://lottiefiles.com/)
+
+### Resource
+
+- [splash-screen](https://hotpot.ai/templates/splash-screen/10)
 
 ### UI components
 
@@ -51,6 +61,9 @@ build the UI components inspired by shadcn/ui, refer from:
 
 ## todo
 
+- useProtectedAction test failed
+- Github action
+
 ### E2E test
 
 ### test provider & mock
@@ -65,3 +78,5 @@ jest.mock('@react-navigation/native', () => {
   }
 })
 ```
+
+### [Supabase](https://supabase.com/docs/guides/auth/quickstarts/react-native)

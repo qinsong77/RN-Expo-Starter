@@ -1,26 +1,25 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Text, useColorScheme } from 'react-native'
+import { Text } from 'react-native'
 
 import { useColorScheme as useColorSchemeTw } from 'nativewind'
 
-import { Container } from '@/components/Container'
+import { SafeContainer } from '@/components/Container'
 import { InternalizationExample } from '@/components/InternalizationExample'
 import { Button, Separator } from '@/components/ui'
 
-export default function Index() {
-  const colorScheme = useColorScheme()
+export default function Home() {
   const { setColorScheme, colorScheme: colorSchemeTw } = useColorSchemeTw()
 
   const { t } = useTranslation()
 
   return (
-    <Container>
+    <SafeContainer>
       <Text className="mb-2 text-2xl font-semibold text-primary">
         {t('greeting')}
       </Text>
       <Button
-        label="switch theme"
+        label={t('theme_switch')}
         onPress={() =>
           setColorScheme(colorSchemeTw === 'dark' ? 'light' : 'dark')
         }
@@ -29,6 +28,6 @@ export default function Index() {
       <Separator />
 
       <InternalizationExample />
-    </Container>
+    </SafeContainer>
   )
 }

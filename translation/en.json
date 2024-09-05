@@ -4,6 +4,17 @@
     "sense": "sense",
     "setting": "setting"
   },
+  "auth": {
+    "sign_in": "sign in",
+    "sing_up": "sign up",
+    "sign_out": "sign out"
+  },
   "greeting": "hello, word!",
-  "lang_switch": "切换为中文"
+  "lang_switch": "切换为中文",
+  "theme_switch": "switch theme",
+  "settings": {
+    "title": "Settings",
+    "account_setting": "Account Settings",
+    "more": "more..."
+  }
 }

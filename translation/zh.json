@@ -4,6 +4,17 @@
     "sense": "场景",
     "setting": "我的"
   },
+  "auth": {
+    "sign_in": "登录",
+    "sing_up": "注册",
+    "sign_out": "退出登录"
+  },
   "greeting": "你好呀!",
-  "lang_switch": "Switch language to English"
+  "lang_switch": "Switch language to English",
+  "theme_switch": "切换主题",
+  "settings": {
+    "title": "设置",
+    "account_setting": "账号设置",
+    "more": "更多..."
+  }
 }

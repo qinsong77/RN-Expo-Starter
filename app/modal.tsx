@@ -3,14 +3,14 @@ import { Platform } from 'react-native'
 
 import { InternalizationExample } from 'components/InternalizationExample'
 
-import { Container } from '@/components/Container'
+import { SafeContainer } from '@/components/Container'
 
 export default function Modal() {
   return (
     <>
-      <Container>
+      <SafeContainer>
         <InternalizationExample />
-      </Container>
+      </SafeContainer>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </>
   )

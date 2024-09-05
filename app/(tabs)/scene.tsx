@@ -1,20 +1,35 @@
 import { Link } from 'expo-router'
 import { Text } from 'react-native'
 
-import { Container } from '@/components/Container'
+import { SafeContainer } from '@/components/Container'
+import { Button, ThemedText } from '@/components/ui'
+import { useProtectedAction } from '@/core/auth'
 
 export default function Scene() {
+  const wrappedProtectedAction = useProtectedAction()
+  const onBtnPress = wrappedProtectedAction((val: string) => {
+    console.log(val)
+  })
   return (
-    <>
-      <Container>
-        <Text className="text-primary">scene</Text>
-        <Link
-          href="/modal"
-          className="text-primary underline"
-        >
-          View modal
-        </Link>
-      </Container>
-    </>
+    <SafeContainer>
+      <Text className="text-xl font-bold text-primary">Scene</Text>
+      <Link
+        href="/modal"
+        className="text-primary underline"
+      >
+        View modal
+      </Link>
+      <ThemedText className="text-xl">Protected action and route</ThemedText>
+      <Button
+        label="protected action"
+        onPress={() => onBtnPress('test')}
+      />
+      <Link
+        href="/(protected)/chat/1"
+        className="mt-2 text-primary underline"
+      >
+        protected route
+      </Link>
+    </SafeContainer>
   )
 }

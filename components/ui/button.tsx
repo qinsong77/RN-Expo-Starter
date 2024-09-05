@@ -1,4 +1,4 @@
-import { Pressable, Text } from 'react-native'
+import { ActivityIndicator, Pressable, Text } from 'react-native'
 
 import { cva, type VariantProps } from 'class-variance-authority'
 
@@ -40,7 +40,7 @@ const buttonTextVariants = cva('text-center font-medium', {
     },
     size: {
       default: 'text-base',
-      sm: 'text-sm',
+      sm: 'text-sm font-light',
       lg: 'text-xl',
       icon: '',
     },
@@ -56,6 +56,7 @@ interface ButtonProps
     VariantProps<typeof buttonVariants> {
   label: string
   labelClasses?: string
+  isLoading?: boolean
 }
 
 function Button({
@@ -64,12 +65,17 @@ function Button({
   className,
   variant,
   size,
+  isLoading,
   ...props
 }: ButtonProps) {
   return (
     <Pressable
       accessibilityRole="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      disabled={isLoading}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        isLoading ? 'opacity-50' : '',
+      )}
       {...props}
     >
       <Text
@@ -79,6 +85,14 @@ function Button({
       >
         {label}
       </Text>
+      {isLoading && (
+        <ActivityIndicator
+          animating={isLoading}
+          color="#fff"
+          size="small"
+          className="ml-2"
+        />
+      )}
     </Pressable>
   )
 }
