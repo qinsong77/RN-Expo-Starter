@@ -10,6 +10,7 @@
   - sign in, sign up
   - process as guest
   - protect route and action
+  - [Supabase](https://supabase.com/docs/guides/auth/quickstarts/react-native) - TBD
 
 ## Step by steps
 
@@ -33,6 +34,14 @@ react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.e
 - [react-native-ui-lib](https://github.com/wix/react-native-ui-lib)
 
 ## General Guidelines
+
+### Dep
+
+install, prefer using:
+
+```sh
+bunx expo install react-native-webview
+```
 
 ### 动画
 
@@ -78,5 +87,3 @@ jest.mock('@react-navigation/native', () => {
   }
 })
 ```
-
-### [Supabase](https://supabase.com/docs/guides/auth/quickstarts/react-native)
