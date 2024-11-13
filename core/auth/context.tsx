@@ -1,4 +1,4 @@
-import { router, SplashScreen } from 'expo-router'
+import { SplashScreen, useRouter } from 'expo-router'
 import {
   createContext,
   PropsWithChildren,
@@ -35,6 +35,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: PropsWithChildren) {
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [session, setSession] = useState<AuthContextType['session']>(null)
   const [user, setUser] = useState<AuthContextType['user']>(null)

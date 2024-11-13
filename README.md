@@ -87,3 +87,29 @@ jest.mock('@react-navigation/native', () => {
   }
 })
 ```
+
+## Found issues
+
+`sonner.web.ts` 报错，Metro error: While trying to resolve module `sonner`, this package itself specifies a `main` module field that could not be resolved (`/Users/notend/GitHubProject/focus-gold/node_modules/sonner/index`...
+
+手动修改sonner node_module中解决`package.json`解决：
+
+```json
+{
+  "main": "./dist/index.js"
+}
+```
+
+## Used Library
+
+- [sonner-native](https://gunnartorfis.github.io/sonner-native/) toast component for React Native.
+- [lucide-react-native](https://lucide.dev/guide/packages/lucide-react-native)
+
+## local build
+
+1. `npm install -g eas-cli`
+2. `eas login`
+3. config esa.json, refer: [eas.json](https://docs.expo.dev/eas/json)
+4. eas build --platform android --profile preview --local
+
+- `eas build --profile development-simulator --platform ios` build for ios simulator without expo go for canny expo sdk

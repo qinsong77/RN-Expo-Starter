@@ -40,8 +40,9 @@ function isHSLValue(value: string) {
 const formatForReactNative = (variables: Record<string, string>) => {
   return Object.entries(variables)
     .map(([key, value]) => {
-      if (!isHSLValue(value)) return ''
-      return `  ${convertCssVariableName(key)}: 'hsl(${value})',`
+      if (isHSLValue(value))
+        return `  ${convertCssVariableName(key)}: 'hsl(${value})',`
+      else return `  ${convertCssVariableName(key)}: '${value}',`
     })
     .join('\n')
 }

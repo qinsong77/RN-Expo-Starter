@@ -11,11 +11,15 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { EyeOff, LockIcon, Mail } from 'lucide-react-native'
+
 import { TravelBusView } from '@/components/travel-bus-view'
-import { Button, Input } from '@/components/ui'
+import { Button, Input, Separator } from '@/components/ui'
+import { toast } from '@/components/ui/sonner'
 import { useAuth } from '@/core/auth'
 
 const SignUp = () => {
+  const [passportVisible, setPassportVisible] = useState(true)
   const { signIn } = useAuth()
   const [isSubmitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({
@@ -26,9 +30,11 @@ const SignUp = () => {
   const submit = async () => {
     if (form.email === '' || form.password === '') {
       Alert.alert('Error', 'Please fill in all fields')
+      return
     }
 
     setSubmitting(true)
+    const toastId = toast.loading('Sign Up...')
 
     try {
       await signIn({
@@ -36,12 +42,17 @@ const SignUp = () => {
         password: form.password,
       })
 
-      Alert.alert('Success', 'User signed in successfully')
+      toast.success('Sign Up successfully!', {
+        id: toastId,
+      })
       router.replace('/home')
-    } catch (error) {
-      Alert.alert('Error', 'sign in error')
+    } catch (e) {
+      toast.error('Sign Up failed!', {
+        id: toastId,
+      })
     } finally {
       setSubmitting(false)
+      toast.dismiss(toastId)
     }
   }
 
@@ -58,7 +69,7 @@ const SignUp = () => {
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           >
-            <Text className="mt-8 text-2xl font-semibold text-primary">
+            <Text className="mt-2 text-2xl font-semibold text-primary">
               Sign up to Starter
             </Text>
 
@@ -68,13 +79,35 @@ const SignUp = () => {
               onChangeText={(e) => setForm({ ...form, email: e })}
               className="mt-7"
               inputMode="email"
+              leadingIcon={
+                <Mail
+                  size={20}
+                  color="#6b7280"
+                />
+              }
             />
 
             <Input
+              className="mt-4"
+              secureTextEntry={passportVisible}
               label="Password"
               value={form.password}
               onChangeText={(e) => setForm({ ...form, password: e })}
-              className="mt-2"
+              leadingIcon={
+                <LockIcon
+                  size={20}
+                  color="#6b7280"
+                />
+              }
+              trailingIcon={
+                <EyeOff
+                  size={20}
+                  color="#6b7280"
+                />
+              }
+              onTrailingIconPress={() => {
+                setPassportVisible((value) => !value)
+              }}
             />
 
             <Button
@@ -83,17 +116,20 @@ const SignUp = () => {
               className="mt-7"
               isLoading={isSubmitting}
             />
-
-            <View className="flex flex-row justify-center gap-2 pt-5">
-              <Text className="text-primary">Have an account already?</Text>
-              <Link
-                href="/sign-in"
-                className="text-primary underline"
-              >
-                Sign in
-              </Link>
-            </View>
           </KeyboardAvoidingView>
+          <Separator
+            text="or"
+            className="mt-6"
+          />
+          <View className="flex flex-row justify-center gap-2 pt-5">
+            <Text className="text-primary">Have an account already?</Text>
+            <Link
+              href="/sign-in"
+              className="text-primary underline"
+            >
+              Sign in
+            </Link>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

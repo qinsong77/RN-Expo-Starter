@@ -44,7 +44,7 @@ function CardTitle({
 function CardDescription({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof View>) {
+}: React.ComponentPropsWithoutRef<typeof Text>) {
   return (
     <Text
       className={cn('text-sm text-muted-foreground', className)}

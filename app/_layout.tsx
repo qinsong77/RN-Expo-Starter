@@ -8,6 +8,7 @@ import {
 } from '@react-navigation/native'
 import { useColorScheme as useColorSchemeTw } from 'nativewind'
 
+import { Toaster } from '@/components/ui/sonner'
 import { LIGHT_COLORS } from '@/constant/color'
 import { AuthProvider } from '@/core/auth'
 
@@ -41,6 +42,7 @@ export default function RootLayout() {
         value={colorSchemeTw === 'dark' ? DarkTheme : overwriteDefaultTheme}
       >
         <AuthProvider>
+          <Toaster />
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen
               name="(auth)"

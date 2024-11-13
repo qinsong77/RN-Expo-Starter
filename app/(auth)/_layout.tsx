@@ -1,6 +1,6 @@
 import { Redirect, Stack } from 'expo-router'
 
-import { Loader } from '@/components/ui'
+// import { Loader } from '@/components/ui'
 import { useAuth } from '@/core/auth'
 
 const AuthLayout = () => {
@@ -25,10 +25,10 @@ const AuthLayout = () => {
           }}
         />
       </Stack>
-      <Loader
-        isLoading={isLoading}
-        position="bottom"
-      />
+      {/*<Loader*/}
+      {/*  isLoading={isLoading}*/}
+      {/*  position="bottom"*/}
+      {/*/>*/}
     </>
   )
 }
