@@ -29,7 +29,7 @@ function CardHeader({
 function CardTitle({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof View>) {
+}: React.ComponentPropsWithoutRef<typeof Text>) {
   return (
     <Text
       className={cn(
