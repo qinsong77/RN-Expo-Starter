@@ -17,7 +17,7 @@ export const init18n = ({ resources, fallbackLng }: Init18n) => {
     .init({
       resources,
       fallbackLng: fallbackChecker(resources, fallbackLng),
-      compatibilityJSON: 'v3', // By default React Native projects does not support Intl
+      compatibilityJSON: 'v4', // By default React Native projects does not support Intl
       interpolation: {
         escapeValue: false,
       },
