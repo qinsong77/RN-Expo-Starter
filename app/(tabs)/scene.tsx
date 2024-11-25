@@ -2,7 +2,8 @@ import { Link } from 'expo-router'
 import { Text } from 'react-native'
 
 import { SafeContainer } from '@/components/Container'
-import { Button, ThemedText } from '@/components/ui'
+import { Button, Separator, ThemedText } from '@/components/ui'
+import DOMComponent from '@/components/web/dom-component'
 import { useProtectedAction } from '@/core/auth'
 
 export default function Scene() {
@@ -30,6 +31,8 @@ export default function Scene() {
       >
         protected route
       </Link>
+      <Separator />
+      <DOMComponent name="notend" />
     </SafeContainer>
   )
 }

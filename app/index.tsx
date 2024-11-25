@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { TravelBusView } from '@/components/travel-bus-view'
 import { Button, Loader, Separator, ThemedText } from '@/components/ui'
-import DOMComponent from '@/components/web/dom-component'
 import { GUEST_TOKEN } from '@/constant'
 import { useAuth } from '@/core/auth'
 
@@ -61,8 +60,6 @@ const Welcome = () => {
             size="sm"
             className="mt-4 w-full"
           />
-          <Separator />
-          <DOMComponent name="sysuke" />
         </View>
       </ScrollView>
     </SafeAreaView>
