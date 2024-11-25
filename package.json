@@ -24,8 +24,8 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@dotlottie/react-player": "^1.6.19",
     "@expo/vector-icons": "^14.0.4",
+    "@lottiefiles/dotlottie-react": "^0.10.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "expo": "^52.0.11",
