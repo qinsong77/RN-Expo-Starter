@@ -7,7 +7,7 @@ export type User = {
 export type AuthContextType = {
   signIn: (params: { email: string; password: string }) => Promise<void>
   signOut: () => Promise<void>
-  session: string | null
+  token: string | null
   user: User
   isLoading: boolean
   isAuthenticated: boolean

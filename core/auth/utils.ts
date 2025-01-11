@@ -1,39 +1,39 @@
 import { AUTH_TOKEN_KEY, GUEST_TOKEN } from '@/constant'
 import {
-  getStorageItem,
-  removeStorageItem,
-  setStorageItem,
+  getSecureStorageItem,
+  removeSecureStorageItem,
+  setSecureStorageItem,
 } from '@/core/utils/SecureStore'
 
 import { User } from './type'
 
-export const getSession = async () => {
-  return await getStorageItem(AUTH_TOKEN_KEY)
+export const getToken = async () => {
+  return await getSecureStorageItem(AUTH_TOKEN_KEY)
 }
 
 export const isAuthenticated = async () => {
-  const session = await getSession()
-  return !!session
+  const token = await getToken()
+  return !!token
 }
 
 export const signIn = async (params: { email: string; password: string }) => {
-  await setStorageItem(AUTH_TOKEN_KEY, params.email)
+  await setSecureStorageItem(AUTH_TOKEN_KEY, params.email)
   return params.email
 }
 
 export const signOut = async () => {
-  await removeStorageItem(AUTH_TOKEN_KEY)
+  await removeSecureStorageItem(AUTH_TOKEN_KEY)
 }
 
 export const getCurrentUser = async () => {
-  const session = await getSession()
+  const token = await getToken()
   return await new Promise<User>((resolve) =>
     setTimeout(() => {
       resolve({
         id: 1,
         name: 'Tom',
         // todo
-        anonymous_id: session === GUEST_TOKEN ? 'anonymous_id_xxx' : undefined,
+        anonymous_id: token === GUEST_TOKEN ? 'anonymous_id_xxx' : undefined,
       })
     }, 2000),
   )

@@ -8,7 +8,7 @@ import {
 } from 'react'
 
 import { AuthContextType } from './type'
-import { getCurrentUser, getSession, signIn, signOut } from './utils'
+import { getCurrentUser, getToken, signIn, signOut } from './utils'
 
 // Keep the splash screen visible while we fetch resources https://docs.expo.dev/versions/latest/sdk/splash-screen/
 SplashScreen.preventAutoHideAsync()
@@ -16,7 +16,7 @@ SplashScreen.preventAutoHideAsync()
 const AuthContext = createContext<AuthContextType>({
   signIn: () => Promise.resolve(),
   signOut: () => Promise.resolve(),
-  session: null,
+  token: null,
   user: null,
   isLoading: true,
   isAuthenticated: false,
@@ -27,7 +27,7 @@ export function useAuth() {
   const value = useContext(AuthContext)
   if (process.env.NODE_ENV !== 'production') {
     if (!value) {
-      throw new Error('useSession must be wrapped in a <AuthProvider />')
+      throw new Error('useAuth must be wrapped in a <AuthProvider />')
     }
   }
 
@@ -37,19 +37,19 @@ export function useAuth() {
 export function AuthProvider({ children }: PropsWithChildren) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const [session, setSession] = useState<AuthContextType['session']>(null)
+  const [token, setToken] = useState<AuthContextType['token']>(null)
   const [user, setUser] = useState<AuthContextType['user']>(null)
   useEffect(() => {
     console.log('AuthProvider effect run')
     const initAuth = async () => {
       try {
-        const session = await getSession()
+        const token = await getToken()
         // todo: a little tricky
-        if (session) {
+        if (token) {
           router.replace('/home')
           const user = await getCurrentUser()
           if (user) {
-            setSession(session)
+            setToken(token)
             setUser(user)
           } else {
             router.replace('/')
@@ -70,27 +70,27 @@ export function AuthProvider({ children }: PropsWithChildren) {
       value={{
         signIn: async (...params: Parameters<typeof signIn>) => {
           setIsLoading(true)
-          const session = await signIn(...params)
+          const token = await signIn(...params)
           const user = await getCurrentUser()
-          if (session && user) {
-            setSession(session)
+          if (token && user) {
+            setToken(token)
             setUser(user)
           } else {
-            throw new Error('cannot get session or user')
+            throw new Error('cannot get token or user')
           }
           setIsLoading(false)
         },
         signOut: async () => {
           await signOut()
-          setSession(null)
+          setToken(null)
           setUser(null)
           router.dismissAll()
           router.replace('/sign-in')
         },
-        session,
+        token,
         user,
-        isAuthenticated: session !== null && user !== null,
-        isGuest: !!(session && user && user.anonymous_id),
+        isAuthenticated: token !== null && user !== null,
+        isGuest: !!(token && user && user.anonymous_id),
         isLoading,
       }}
     >

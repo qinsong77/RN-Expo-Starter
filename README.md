@@ -28,20 +28,20 @@ react-native rely on Expo, check the doc here: [Upgrade Expo SDK](https://docs.e
 3. check the [Changelog](https://github.com/expo/expo/blob/main/packages/expo/CHANGELOG.md)
 4. Check for any possible known issues: `bunx expo-doctor@latest`
 
-## Other choices
-
-- style system and ui library [tamagui](https://tamagui.dev/)
-- [react-native-ui-lib](https://github.com/wix/react-native-ui-lib)
-
 ## General Guidelines
 
 ### Dep
 
-install, prefer using:
+install, prefer using this for install expo related:
 
 ```sh
 bunx expo install react-native-webview
 ```
+
+## Used Library
+
+- [sonner-native](https://gunnartorfis.github.io/sonner-native/) toast component for React Native.
+- [lucide-react-native](https://lucide.dev/guide/packages/lucide-react-native)
 
 ### 动画
 
@@ -60,18 +60,20 @@ build the UI components inspired by shadcn/ui, refer from:
 - [react-native-reusables](https://github.com/mrzachnugent/react-native-reusables) Universal shadcn/ui for React Native featuring a focused collection of components - Crafted with NativeWind v4 and accessibility in mind.
 - [nativecn-ui](https://github.com/Mobilecn-UI/nativecn-ui)
 
+### Other choices
+
+- [gluestack-ui](https://gluestack.io/) React & React Native Components & Patterns, seems good.
+- style system and ui library [tamagui](https://tamagui.dev/)
+- [react-native-ui-lib](https://github.com/wix/react-native-ui-lib)
+
 ### Notes
 
 - Don't wrap your whole app in SafeAreaView, instead apply the styles to content inside your screens, from: [reactnavigation-summary](https://reactnavigation.org/docs/handling-safe-area/#summary)
 
-## Chore
-
-- install `ts-node` just to support read TypeScript **jest** configuration.
-
 ## todo
 
 - useProtectedAction test failed
-- Github action
+- GitHub action
 
 ### E2E test
 
@@ -100,11 +102,6 @@ jest.mock('@react-navigation/native', () => {
 }
 ```
 
-## Used Library
-
-- [sonner-native](https://gunnartorfis.github.io/sonner-native/) toast component for React Native.
-- [lucide-react-native](https://lucide.dev/guide/packages/lucide-react-native)
-
 ## local build
 
 1. `npm install -g eas-cli`
@@ -113,3 +110,7 @@ jest.mock('@react-navigation/native', () => {
 4. eas build --platform android --profile preview --local
 
 - `eas build --profile development-simulator --platform ios` build for ios simulator without expo go for canny expo sdk
+
+## Chore
+
+- install `ts-node` just to support read TypeScript **jest** configuration.
