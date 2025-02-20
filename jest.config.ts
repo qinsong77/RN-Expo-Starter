@@ -1,7 +1,8 @@
+import type { Config } from 'jest'
 /*
   https://docs.expo.dev/develop/unit-testing/
  */
-export default {
+const config: Config = {
   preset: 'jest-expo',
   // covered in preset
   // transformIgnorePatterns: [
@@ -23,3 +24,5 @@ export default {
     'core/**/*.{js,jsx,ts,tsx}',
   ],
 }
+
+export default config

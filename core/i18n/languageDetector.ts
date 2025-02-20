@@ -6,8 +6,7 @@ export const languageDetector: LanguageDetectorModule = {
   type: 'languageDetector',
   detect: () => {
     const locales = Localization.getLocales()
-    const firstLanguageCode = locales[0]?.languageCode ?? 'en'
-    return firstLanguageCode
+    return locales[0]?.languageCode ?? 'en'
   },
   init: () => {},
   cacheUserLanguage: () => {},

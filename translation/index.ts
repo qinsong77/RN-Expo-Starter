@@ -3,7 +3,7 @@ import en from 'translation/en.json'
 
 import zh from '@/translation/zh.json'
 
-export const resources = {
+const resources = {
   en: {
     translation: en,
   },
@@ -12,7 +12,7 @@ export const resources = {
   },
 }
 
-export const fallbackLng = 'en'
+const fallbackLng = 'en'
 
 export type LanguageCode = keyof typeof resources
 
