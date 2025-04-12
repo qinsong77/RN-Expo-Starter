@@ -141,7 +141,7 @@ const SignIn = () => {
             href={redirect_url ? `/?redirect_url=${redirect_url}` : '/'}
             className="text-primary underline"
           >
-            as a guest
+            continue as a guest
           </Link>
         </View>
       </View>

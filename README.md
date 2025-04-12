@@ -59,9 +59,11 @@ bunx expo install react-native-webview
 
 ### Notes
 
+- Using [https://docs.expo.dev/develop/development-builds/introduction/](https://docs.expo.dev/develop/development-builds/introduction/) `expo-dev-client` for production app
+  - [Create a development build](https://docs.expo.dev/develop/development-builds/create-a-build/)
 - Don't wrap your whole app in SafeAreaView, instead apply the styles to content inside your screens, from: [reactnavigation-summary](https://reactnavigation.org/docs/handling-safe-area/#summary)
 
-## Used Library
+## Used Libraries
 
 - [sonner-native](https://gunnartorfis.github.io/sonner-native/) toast component for React Native.
 - [lucide-react-native](https://lucide.dev/guide/packages/lucide-react-native)

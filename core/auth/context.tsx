@@ -1,4 +1,5 @@
-import { SplashScreen, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
+import * as SplashScreen from 'expo-splash-screen'
 import {
   createContext,
   PropsWithChildren,
@@ -12,6 +13,12 @@ import { getCurrentUser, getToken, signIn, signOut } from './utils'
 
 // Keep the splash screen visible while we fetch resources https://docs.expo.dev/versions/latest/sdk/splash-screen/
 SplashScreen.preventAutoHideAsync()
+
+// Set the animation options. This is optional.
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+})
 
 const AuthContext = createContext<AuthContextType>({
   signIn: () => Promise.resolve(),

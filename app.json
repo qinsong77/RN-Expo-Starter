@@ -14,7 +14,19 @@
       "expo-router",
       "expo-localization",
       "expo-secure-store",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#EDA37C",
+          "image": "./assets/splash.png",
+          "dark": {
+            "image": "./assets/splash.png",
+            "backgroundColor": "#EDA37C"
+          },
+          "resizeMode": "contain"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
@@ -23,18 +35,15 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#EDA37C"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sysuke.rn-expo-starter"
     },
     "android": {
+      "package": "com.sysuke.rn-expo-starter",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
