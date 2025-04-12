@@ -10,7 +10,7 @@ jest.doMock('react-native', () => {
   return Object.setPrototypeOf(
     {
       Image: {
-        ...ReactNative.Image,
+        // ...ReactNative.Image,
         resolveAssetSource: jest.fn((_source) => mockFile),
         getSize: jest.fn(
           (
