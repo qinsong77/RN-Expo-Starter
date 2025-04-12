@@ -22,7 +22,7 @@ Update React Native rely on Expo, check the doc here: [Upgrade Expo SDK](https:/
 3. check the [Changelog](https://github.com/expo/expo/blob/main/packages/expo/CHANGELOG.md)
 4. Check for any possible known issues: `bunx expo-doctor@latest`
 
-## todo
+## Todo
 
 - GitHub action
 

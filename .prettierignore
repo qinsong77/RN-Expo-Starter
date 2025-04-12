@@ -1,0 +1,11 @@
+.vscode
+.idea
+.husky
+
+# expo
+.expo
+app.json
+
+
+# asset
+assets/**/*.json
