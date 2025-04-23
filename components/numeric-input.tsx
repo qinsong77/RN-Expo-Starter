@@ -85,4 +85,6 @@ const NumericInput = forwardRef<
   },
 )
 
+NumericInput.displayName = 'NumericInput'
+
 export { NumericInput }

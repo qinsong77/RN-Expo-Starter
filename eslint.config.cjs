@@ -37,6 +37,7 @@ module.exports = defineConfig([
         { blankLine: 'always', prev: ['export', 'function'], next: '*' },
         { blankLine: 'always', prev: '*', next: ['export', 'function'] },
       ],
+      'react/no-unescaped-entities': 'off',
     },
   },
 
