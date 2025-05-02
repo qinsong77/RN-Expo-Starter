@@ -1,6 +1,11 @@
 'use dom'
 
-export default function DOMComponent({ name }: { name: string }) {
+export default function DOMComponent({
+  name,
+}: {
+  name: string
+  dom: import('expo/dom').DOMProps
+}) {
   return (
     <div>
       <h3>

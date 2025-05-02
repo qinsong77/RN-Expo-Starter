@@ -32,7 +32,10 @@ export default function Scene() {
         protected route
       </Link>
       <Separator />
-      <DOMComponent name="notend" />
+      <DOMComponent
+        name="notend"
+        dom={{ matchContents: true }}
+      />
     </SafeContainer>
   )
 }

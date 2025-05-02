@@ -1,7 +1,7 @@
 {
   "expo": {
     "newArchEnabled": true,
-    "name": "rn-expo-starter",
+    "name": "rn expo starter",
     "slug": "rn-expo-starter",
     "version": "1.0.0",
     "scheme": "rn-expo-starter",
@@ -43,7 +43,7 @@
       "bundleIdentifier": "com.sysuke.rn-expo-starter"
     },
     "android": {
-      "package": "com.sysuke.rn-expo-starter",
+      "package": "com.sysuke.rn_expo_starter",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"

@@ -90,6 +90,7 @@ build the UI components inspired by shadcn/ui, refer from:
 - [gluestack-ui](https://gluestack.io/) React & React Native Components & Patterns, seems good.
 - style system and ui library [tamagui](https://tamagui.dev/)
 - [react-native-ui-lib](https://github.com/wix/react-native-ui-lib)
+- [Expo UI](https://docs.expo.dev/versions/v53.0.0/sdk/ui/)
 
 ## Chore
 
