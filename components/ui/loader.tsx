@@ -1,7 +1,7 @@
 import { ActivityIndicator, Dimensions, Platform, View } from 'react-native'
 
-import { useColorTokens } from '@/hooks'
-import { cn } from '@/utils'
+import { useColorTokens } from '@/core/hooks'
+import { cn } from '@/core/utils'
 
 const osName = Platform.OS
 const screenHeight = Dimensions.get('screen').height

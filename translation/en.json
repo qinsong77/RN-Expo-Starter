@@ -1,5 +1,6 @@
 {
   "tabs": {
+    "home": "home",
     "chat": "chat",
     "sense": "sense",
     "setting": "setting"

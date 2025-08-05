@@ -24,7 +24,7 @@ export const useProtectedAction = () => {
               text: 'OK',
               onPress: () => {
                 // todo add search parameter?
-                router.push(`/(auth)/sign-in?redirect_url=${pathname}`)
+                router.push(`/auth/signin?redirect_url=${pathname}`)
               },
             },
           ],

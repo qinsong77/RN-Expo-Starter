@@ -7,7 +7,7 @@ import {
   MaterialIcons,
 } from '@expo/vector-icons'
 
-import { useColorTokens } from '@/hooks'
+import { useColorTokens } from '@/core/hooks'
 
 export default function TabLayout() {
   const { t } = useTranslation()
@@ -21,6 +21,21 @@ export default function TabLayout() {
     >
       <Tabs.Screen
         name="home"
+        options={{
+          title: t('tabs.home'),
+          tabBarIcon: ({ color }) => {
+            return (
+              <Entypo
+                name="home"
+                size={24}
+                color={color}
+              />
+            )
+          },
+        }}
+      />
+      <Tabs.Screen
+        name="chat"
         options={{
           title: t('tabs.chat'),
           tabBarIcon: ({ color }) => {

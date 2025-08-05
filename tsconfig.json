@@ -4,11 +4,8 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/features": ["features/index.ts"],
-      "@/hooks": ["core/hooks/index.ts"],
-      "@/utils": ["core/utils/index.ts"],
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "tailwind.config": ["./tailwind.config.js"]
     }
   },
   "include": [
@@ -16,6 +13,7 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "nativewind-env.d.ts"
+    "nativewind-env.d.ts",
+    "tailwind-variants.d.ts"
   ]
 }

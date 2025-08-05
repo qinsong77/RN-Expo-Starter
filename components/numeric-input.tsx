@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from 'react'
 import { Text, TextInput, View } from 'react-native'
 
-import { cn } from '@/utils'
+import { cn } from '@/core/utils'
 
 export interface NumericInputProps
   extends Omit<
@@ -73,7 +73,7 @@ const NumericInput = forwardRef<
           ref={ref}
           className={cn(
             inputClasses,
-            'rounded-lg border border-input px-4 py-2.5 text-primary/80',
+            'border-input text-primary/80 rounded-lg border px-4 py-2.5',
           )}
           value={value !== null ? value : ''}
           onChangeText={handleInputChange}

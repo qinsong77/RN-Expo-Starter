@@ -4,7 +4,6 @@ import { Image, Text, View } from 'react-native'
 import { HeaderBackButton } from '@react-navigation/elements'
 
 import { Container } from '@/components/Container'
-import { ThemedText } from '@/components/ui'
 
 export default function Page() {
   const { id } = useLocalSearchParams()
@@ -38,8 +37,8 @@ export default function Page() {
           // },
         }}
       />
-      <ThemedText>chat detail</ThemedText>
-      <ThemedText>id: {id}</ThemedText>
+      <Text>chat detail</Text>
+      <Text>id: {id}</Text>
     </Container>
   )
 }

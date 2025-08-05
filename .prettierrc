@@ -10,5 +10,6 @@
   "singleAttributePerLine": true,
   "endOfLine": "lf",
   "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["tva"],
   "tailwindAttributes": ["className"]
 }

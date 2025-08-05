@@ -6,6 +6,7 @@
 .expo
 app.json
 
+components/ui
 
 # asset
 assets/**/*.json

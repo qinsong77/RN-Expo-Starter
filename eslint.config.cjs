@@ -15,6 +15,7 @@ module.exports = defineConfig([
     '.vscode/*',
     '.expo/*',
     'expo-env.d.ts',
+    'components/ui',
   ]),
   expoConfig,
   prettierRecommended,

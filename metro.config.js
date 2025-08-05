@@ -5,4 +5,7 @@ const { withNativeWind } = require('nativewind/metro')
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname)
 
+// Resolve Better Auth exports https://www.better-auth.com/docs/integrations/expo#configure-metro-bundler
+config.resolver.unstable_enablePackageExports = true
+
 module.exports = withNativeWind(config, { input: './global.css' })

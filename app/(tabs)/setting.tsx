@@ -1,13 +1,15 @@
 import { Image } from 'expo-image'
 import { router } from 'expo-router'
 import { useTranslation } from 'react-i18next'
-import { Pressable, PressableProps, Text, View } from 'react-native'
+import { Pressable, PressableProps, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { MaterialIcons } from '@expo/vector-icons'
 import { useColorScheme as useColorSchemeTw } from 'nativewind/dist/stylesheet'
 
-import { Button, Separator } from '@/components/ui'
+import { Button, ButtonText } from '@/components/ui/button'
+import { Divider } from '@/components/ui/divider'
+import { Text } from '@/components/ui/text'
 import { images } from '@/constant'
 import { LIGHT_COLORS } from '@/constant/color'
 import { useAuth } from '@/core/auth'
@@ -16,7 +18,7 @@ const Item = ({ text, ...rest }: { text: string } & PressableProps) => {
   return (
     <Pressable {...rest}>
       <View>
-        <Text className="my-4 text-primary">{text}</Text>
+        <Text className="my-2">{text}</Text>
       </View>
     </Pressable>
   )
@@ -33,7 +35,7 @@ export default function Setting() {
 
   return (
     <SafeAreaView className="flex h-full">
-      <View className="absolute left-0 top-0 h-72 w-full rounded-b-xl bg-orange-500" />
+      <View className="absolute left-0 top-0 h-64 w-full rounded-b-xl bg-orange-500 dark:bg-orange-300" />
 
       <View className="flex h-full px-4">
         <View className="flex flex-row items-center">
@@ -46,7 +48,7 @@ export default function Setting() {
             {t('settings.title')}
           </Text>
         </View>
-        <View className="mt-12 flex h-full rounded-2xl bg-background px-6 py-4 shadow dark:shadow-gray-700">
+        <View className="bg-background mt-4 flex h-full rounded-2xl px-6 py-4 shadow dark:shadow-gray-700">
           <View className="flex flex-row items-center">
             <Image
               alt="avatar"
@@ -54,34 +56,44 @@ export default function Setting() {
               style={{ width: 40, height: 40, borderRadius: 40 }}
               contentFit="fill"
             />
-            <Text className="ml-2 text-xl text-primary">
+            <Text className="ml-2 text-xl text-primary-900">
               Tom Hanks {isGuest && '- Guest'}
             </Text>
           </View>
-          <Separator className="my-6" />
-          <Text className="mb-2 text-base text-primary/70">
+          <Text
+            size="lg"
+            className="mt-3 text-red-700"
+          >
             {t('settings.account_setting')}
           </Text>
 
-          {isGuest ? (
-            <Button
-              size="sm"
-              variant="secondary"
-              className="my-4"
-              label={t('auth.sing_up')}
-              onPress={() => {
-                router.push('/(auth)/sign-in')
-              }}
-            />
-          ) : (
-            <Button
-              size="sm"
-              variant="secondary"
-              className="my-4"
-              label={t('auth.sign_out')}
-              onPress={() => signOut()}
-            />
-          )}
+          <View className="mt-10">
+            {isGuest ? (
+              <Button
+                variant="outline"
+                size="sm"
+                action="primary"
+                className="my-4"
+                onPress={() => {
+                  router.push('/auth/signin')
+                }}
+              >
+                <ButtonText>{t('auth.sing_up')}</ButtonText>
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                size="sm"
+                action="primary"
+                className="my-4"
+                onPress={() => signOut()}
+              >
+                <ButtonText>{t('auth.sign_out')}</ButtonText>
+              </Button>
+            )}
+          </View>
+
+          <Divider className="my-2" />
 
           <Item
             text={t('theme_switch')}
@@ -90,16 +102,13 @@ export default function Setting() {
             }
           />
 
-          <Separator className="my-4" />
-
-          <Text className="mb-2 text-base text-primary/70">
-            {t('settings.more')}
-          </Text>
-
           <Item
             text={t('lang_switch')}
             onPress={() => toggleLanguage(i18n.language === 'zh' ? 'en' : 'zh')}
           />
+          <Divider className="my-2" />
+
+          <Text className="mt-2">{t('settings.more')}</Text>
         </View>
       </View>
     </SafeAreaView>

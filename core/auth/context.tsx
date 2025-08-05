@@ -92,7 +92,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
           setToken(null)
           setUser(null)
           router.dismissAll()
-          router.replace('/sign-in')
+          router.replace('/auth/signin')
         },
         token,
         user,

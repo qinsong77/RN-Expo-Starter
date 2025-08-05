@@ -1,5 +1,9 @@
 # React Native Expo Starter
 
+https://gluestack.io/ui/docs/components/text
+https://docs.expo.dev/versions/latest/sdk/router/#usenavigationcontainerref
+https://www.better-auth.com/docs/integrations/expo
+
 ## Features
 
 - Base on Expo
@@ -67,6 +71,11 @@ bunx expo install react-native-webview
 
 - [sonner-native](https://gunnartorfis.github.io/sonner-native/) toast component for React Native.
 - [lucide-react-native](https://lucide.dev/guide/packages/lucide-react-native)
+
+### Next
+
+- [Unitools](https://unitools.geekyants.com/overview/introduction/) Universal tools for Expo & Next to solve fragmented
+  APIs of Link, Image, Font & Router
 
 ### Animation
 

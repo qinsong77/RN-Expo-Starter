@@ -1,8 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
-import { Button } from '@/components/ui'
+import { Button, ButtonText } from '@/components/ui/button'
+import { Text } from '@/components/ui/text'
 
 export const InternalizationExample = () => {
   const { t, i18n } = useTranslation()
@@ -14,10 +15,11 @@ export const InternalizationExample = () => {
     <View>
       <Button
         className="my-4"
-        label={t('lang_switch')}
         onPress={() => toggleLanguage(i18n.language === 'zh' ? 'en' : 'zh')}
-      />
-      <Text className="text-primary">
+      >
+        <ButtonText>{t('lang_switch')}</ButtonText>
+      </Button>
+      <Text className="text-primary-900">
         Current language: {i18n.language.toUpperCase()}
       </Text>
     </View>

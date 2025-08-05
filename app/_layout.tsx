@@ -8,6 +8,7 @@ import {
 } from '@react-navigation/native'
 import { useColorScheme as useColorSchemeTw } from 'nativewind'
 
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { LIGHT_COLORS } from '@/constant/color'
 import { AuthProvider } from '@/core/auth'
@@ -37,36 +38,38 @@ export default function RootLayout() {
   // compatible with web, because above useColorScheme(from 'react-native') not working on web, react-navigation will not change on web
   const { colorScheme: colorSchemeTw } = useColorSchemeTw()
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider
-        value={colorSchemeTw === 'dark' ? DarkTheme : overwriteDefaultTheme}
-      >
-        <AuthProvider>
-          <Toaster />
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen
-              name="(auth)"
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="index"
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="modal"
-              options={{ title: 'Modal', presentation: 'modal' }}
-            />
-            <Stack.Screen
-              name="(tabs)"
-              options={{
-                headerShown: false,
-                title: 'tabs',
-                headerBackVisible: false,
-              }}
-            />
-          </Stack>
-        </AuthProvider>
-      </ThemeProvider>
-    </GestureHandlerRootView>
+    <GluestackUIProvider mode={colorSchemeTw ?? 'light'}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <ThemeProvider
+          value={colorSchemeTw === 'dark' ? DarkTheme : overwriteDefaultTheme}
+        >
+          <AuthProvider>
+            <Toaster />
+            <Stack screenOptions={{ headerShown: false }}>
+              {/*<Stack.Screen*/}
+              {/*  name="auth"*/}
+              {/*  options={{ headerShown: false }}*/}
+              {/*/>*/}
+              <Stack.Screen
+                name="index"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="modal"
+                options={{ title: 'Modal', presentation: 'modal' }}
+              />
+              <Stack.Screen
+                name="(tabs)"
+                options={{
+                  headerShown: false,
+                  title: 'tabs',
+                  headerBackVisible: false,
+                }}
+              />
+            </Stack>
+          </AuthProvider>
+        </ThemeProvider>
+      </GestureHandlerRootView>
+    </GluestackUIProvider>
   )
 }
