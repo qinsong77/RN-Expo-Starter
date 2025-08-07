@@ -1,7 +1,7 @@
 # React Native Expo Starter
 
 - UI component:[gluestack v2](https://gluestack.io/ui/docs/components/text)
-  -Auth: [better-auth](https://www.better-auth.com/docs/integrations/expo)
+- Auth: [better-auth](https://www.better-auth.com/docs/integrations/expo)
 
 For server, refer: [cloudflare-workers-d1-hono-drizzzle-better-auth-template](https://github.com/qinsong77/cloudflare-workers-d1-hono-drizzzle-better-auth-template)
 
