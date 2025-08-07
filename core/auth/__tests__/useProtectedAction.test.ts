@@ -3,9 +3,10 @@ import { Alert } from 'react-native'
 
 import { act, renderHook } from '@testing-library/react-native'
 
-import { useProtectedAction } from '@/core/auth'
-
 import { useAuth } from '../context'
+import { useProtectedAction } from '../useProtectedAction'
+
+jest.mock('../auth-client')
 
 // Mock the useAuth hook
 jest.mock('../context', () => ({
@@ -91,7 +92,7 @@ describe('useProtectedAction', () => {
     })
 
     expect(router.push).toHaveBeenCalledWith(
-      '/(auth)/sign-in?redirect_url=/current-path',
+      '/auth/signin?redirect_url=/current-path',
     )
   })
 })

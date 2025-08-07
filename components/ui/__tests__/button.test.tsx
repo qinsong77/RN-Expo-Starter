@@ -8,6 +8,6 @@ describe('[component] Button', () => {
       <Button>
         <ButtonText>Hello World!</ButtonText>
       </Button>)
-    expect(screen.getByRole('button', { name: 'Hello World' })).toBeOnTheScreen()
+    expect(screen.getByRole('button', { name: 'Hello World!' })).toBeOnTheScreen()
   })
 })
