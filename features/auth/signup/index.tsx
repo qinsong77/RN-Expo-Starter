@@ -5,9 +5,15 @@ import { Keyboard } from 'react-native'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertTriangle } from 'lucide-react-native'
+import colors from 'tailwindcss/colors'
 import { z } from 'zod'
 
-import { Button, ButtonIcon, ButtonText } from '@/components/ui/button'
+import {
+  Button,
+  ButtonIcon,
+  ButtonSpinner,
+  ButtonText,
+} from '@/components/ui/button'
 import {
   Checkbox,
   CheckboxIcon,
@@ -34,15 +40,17 @@ import {
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input'
 import { LinkText } from '@/components/ui/link'
 import { Pressable } from '@/components/ui/pressable'
+import { toast } from '@/components/ui/sonner'
 import { Text } from '@/components/ui/text'
-import { Toast, ToastTitle, useToast } from '@/components/ui/toast'
 import { VStack } from '@/components/ui/vstack'
+import { authClient } from '@/core/auth'
 
 import { AuthViewLayout } from '../layout'
 import { GoogleIcon } from './assets/icons/google'
 
 const signUpSchema = z.object({
-  email: z.string().min(1, 'Email is required').email(),
+  name: z.string().min(1, 'Name is required'),
+  email: z.email('Invalid email address'),
   password: z
     .string()
     .min(6, 'Must be at least 8 characters in length')
@@ -63,8 +71,9 @@ const signUpSchema = z.object({
       new RegExp('.*[`~<>?,./!@#$%^&*()\\-_+="\'|{}\\[\\];:\\\\].*'),
       'One special character',
     ),
-  rememberme: z.boolean().optional(),
+  agreePolicy: z.boolean().optional(),
 })
+
 type SignUpSchemaType = z.infer<typeof signUpSchema>
 
 const SignUpWithLeftBackground = () => {
@@ -72,50 +81,44 @@ const SignUpWithLeftBackground = () => {
     control,
     handleSubmit,
     reset,
-    formState: { errors },
+    setError,
+    watch,
+    formState: { errors, isSubmitting },
   } = useForm<SignUpSchemaType>({
     resolver: zodResolver(signUpSchema),
   })
-  const toast = useToast()
+  const router = useRouter()
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const agreePolicy = watch('agreePolicy')
 
-  const onSubmit = (data: SignUpSchemaType) => {
-    if (data.password === data.confirmpassword) {
-      toast.show({
-        placement: 'bottom right',
-        render: ({ id }) => {
-          return (
-            <Toast
-              nativeID={id}
-              variant="solid"
-              action="success"
-            >
-              <ToastTitle>Success</ToastTitle>
-            </Toast>
-          )
-        },
+  const onSubmit = async (formData: SignUpSchemaType) => {
+    if (formData.password === formData.confirmpassword) {
+      const { data, error } = await authClient.signUp.email({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
       })
-      reset()
+      console.log('-------- signup')
+      console.log(data)
+      console.log(error)
+      if (error) {
+        setError('confirmpassword', {
+          type: 'server',
+          message: error.message || 'register failed',
+        })
+      } else {
+        router.replace('/(tabs)/home')
+      }
     } else {
-      toast.show({
-        placement: 'bottom right',
-        render: ({ id }) => {
-          return (
-            <Toast
-              nativeID={id}
-              variant="solid"
-              action="error"
-            >
-              <ToastTitle>Passwords do not match</ToastTitle>
-            </Toast>
-          )
-        },
+      setError('confirmpassword', {
+        type: 'customer',
+        message: 'password not match',
       })
     }
   }
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const handleState = () => {
+  const handleShowPasswordState = () => {
     setShowPassword((showState) => {
       return !showState
     })
@@ -129,7 +132,6 @@ const SignUpWithLeftBackground = () => {
     Keyboard.dismiss()
     handleSubmit(onSubmit)()
   }
-  const router = useRouter()
   return (
     <VStack
       className="w-full max-w-[440px]"
@@ -165,6 +167,49 @@ const SignUpWithLeftBackground = () => {
           space="xl"
           className="w-full"
         >
+          <FormControl isInvalid={!!errors.name}>
+            <FormControlLabel>
+              <FormControlLabelText>Name</FormControlLabelText>
+            </FormControlLabel>
+            <Controller
+              name="name"
+              defaultValue=""
+              control={control}
+              rules={{
+                validate: async (value) => {
+                  try {
+                    await signUpSchema.parseAsync({ name: value })
+                    return true
+                  } catch (error: any) {
+                    return error.message
+                  }
+                },
+              }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input>
+                  <InputField
+                    className="text-sm"
+                    placeholder="Name"
+                    type="text"
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    onSubmitEditing={handleKeyPress}
+                    returnKeyType="done"
+                  />
+                </Input>
+              )}
+            />
+            <FormControlError>
+              <FormControlErrorIcon
+                size="md"
+                as={AlertTriangle}
+              />
+              <FormControlErrorText>
+                {errors?.name?.message}
+              </FormControlErrorText>
+            </FormControlError>
+          </FormControl>
           <FormControl isInvalid={!!errors.email}>
             <FormControlLabel>
               <FormControlLabelText>Email</FormControlLabelText>
@@ -241,7 +286,7 @@ const SignUpWithLeftBackground = () => {
                     type={showPassword ? 'text' : 'password'}
                   />
                   <InputSlot
-                    onPress={handleState}
+                    onPress={handleShowPasswordState}
                     className="pr-3"
                   >
                     <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
@@ -315,16 +360,15 @@ const SignUpWithLeftBackground = () => {
           </FormControl>
 
           <Controller
-            name="rememberme"
+            name="agreePolicy"
             defaultValue={false}
             control={control}
             render={({ field: { onChange, value } }) => (
               <Checkbox
                 size="sm"
-                value="Remember me"
                 isChecked={value}
                 onChange={onChange}
-                aria-label="Remember me"
+                aria-label="accept the Terms of Use & Privacy Policy"
               >
                 <CheckboxIndicator>
                   <CheckboxIcon as={CheckIcon} />
@@ -344,7 +388,9 @@ const SignUpWithLeftBackground = () => {
           <Button
             className="w-full"
             onPress={handleSubmit(onSubmit)}
+            isDisabled={!agreePolicy || isSubmitting}
           >
+            {isSubmitting && <ButtonSpinner color={colors.gray[400]} />}
             <ButtonText className="font-medium">Sign up</ButtonText>
           </Button>
           <Button

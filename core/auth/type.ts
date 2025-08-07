@@ -1,15 +1,8 @@
-export type User = {
-  id: number
-  name: string
-  anonymous_id?: string
-} | null
+import { Session } from './auth-client'
 
 export type AuthContextType = {
-  signIn: (params: { email: string; password: string }) => Promise<void>
-  signOut: () => Promise<void>
-  token: string | null
-  user: User
-  isLoading: boolean
+  isPending: boolean
+  session: Session | null
   isAuthenticated: boolean
-  isGuest: boolean
+  isAnonymous: boolean
 }

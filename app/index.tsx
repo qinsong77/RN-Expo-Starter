@@ -8,17 +8,17 @@ import { Heading } from '@/components/ui/heading'
 import { Loader } from '@/components/ui/loader'
 import { Text } from '@/components/ui/text'
 import { GUEST_TOKEN } from '@/constant'
-import { useAuth } from '@/core/auth'
+import { authClient, useAuth } from '@/core/auth'
 
 const Welcome = () => {
-  const { isLoading, isAuthenticated, signIn } = useAuth()
+  const { isPending, isAuthenticated } = useAuth()
 
-  if (!isLoading && isAuthenticated) return <Redirect href="/home" />
+  if (!isPending && isAuthenticated) return <Redirect href="/home" />
 
   return (
     <SafeAreaView className="h-full">
       <Loader
-        isLoading={isLoading}
+        isLoading={isPending}
         position="bottom"
       />
 
@@ -67,11 +67,7 @@ const Welcome = () => {
           <Button
             action="secondary"
             onPress={async () => {
-              // todo guest login
-              await signIn({
-                email: GUEST_TOKEN,
-                password: 'mocked_password',
-              })
+              await authClient.signIn.anonymous()
               router.replace('/(tabs)/home')
             }}
             size="sm"

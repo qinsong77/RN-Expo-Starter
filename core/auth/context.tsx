@@ -1,33 +1,29 @@
-import { useRouter } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import {
   createContext,
   PropsWithChildren,
   useContext,
   useEffect,
-  useState,
+  useMemo,
 } from 'react'
 
+import { authClient } from './auth-client'
 import { AuthContextType } from './type'
-import { getCurrentUser, getToken, signIn, signOut } from './utils'
 
 // Keep the splash screen visible while we fetch resources https://docs.expo.dev/versions/latest/sdk/splash-screen/
 SplashScreen.preventAutoHideAsync()
 
 // Set the animation options. This is optional.
 SplashScreen.setOptions({
-  duration: 1000,
+  duration: 100,
   fade: true,
 })
 
 const AuthContext = createContext<AuthContextType>({
-  signIn: () => Promise.resolve(),
-  signOut: () => Promise.resolve(),
-  token: null,
-  user: null,
-  isLoading: true,
+  session: null,
   isAuthenticated: false,
-  isGuest: false,
+  isAnonymous: false,
+  isPending: true,
 })
 
 export function useAuth() {
@@ -42,66 +38,25 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [token, setToken] = useState<AuthContextType['token']>(null)
-  const [user, setUser] = useState<AuthContextType['user']>(null)
-  useEffect(() => {
-    console.log('AuthProvider effect run')
-    const initAuth = async () => {
-      try {
-        const token = await getToken()
-        // todo: a little tricky
-        if (token) {
-          router.replace('/home')
-          const user = await getCurrentUser()
-          if (user) {
-            setToken(token)
-            setUser(user)
-          } else {
-            router.replace('/')
-          }
-        }
-      } catch (e) {
-        console.log(e)
-      } finally {
-        setIsLoading(false)
-      }
-      await SplashScreen.hideAsync()
-    }
-    initAuth()
-  }, [])
+  const { data: session, isPending, error } = authClient.useSession()
+  console.log(session)
+  console.log(isPending)
+  console.log(error)
 
-  return (
-    <AuthContext.Provider
-      value={{
-        signIn: async (...params: Parameters<typeof signIn>) => {
-          setIsLoading(true)
-          const token = await signIn(...params)
-          const user = await getCurrentUser()
-          if (token && user) {
-            setToken(token)
-            setUser(user)
-          } else {
-            throw new Error('cannot get token or user')
-          }
-          setIsLoading(false)
-        },
-        signOut: async () => {
-          await signOut()
-          setToken(null)
-          setUser(null)
-          router.dismissAll()
-          router.replace('/auth/signin')
-        },
-        token,
-        user,
-        isAuthenticated: token !== null && user !== null,
-        isGuest: !!(token && user && user.anonymous_id),
-        isLoading,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  )
+  useEffect(() => {
+    if (!isPending) {
+      SplashScreen.hideAsync()
+    }
+  }, [isPending])
+
+  const value: AuthContextType = useMemo(() => {
+    return {
+      session,
+      isPending,
+      isAuthenticated: !!session?.session?.token,
+      isAnonymous: !!session?.user?.isAnonymous,
+    }
+  }, [session, isPending])
+
+  return <AuthContext value={value}>{children}</AuthContext>
 }

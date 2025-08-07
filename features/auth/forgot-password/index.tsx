@@ -26,7 +26,7 @@ import { VStack } from '@/components/ui/vstack'
 import { AuthViewLayout } from '../layout'
 
 const forgotPasswordSchema = z.object({
-  email: z.string().min(1, 'Email is required').email(),
+  email: z.email('Email is invalid'),
 })
 
 type forgotPasswordSchemaType = z.infer<typeof forgotPasswordSchema>

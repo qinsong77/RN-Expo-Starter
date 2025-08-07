@@ -5,11 +5,11 @@ import { useAuth } from '@/core/auth'
 
 const ProtectedLayout = () => {
   const pathname = usePathname()
-  const { isAuthenticated, isLoading, isGuest } = useAuth()
+  const { isAuthenticated, isPending, isAnonymous } = useAuth()
 
-  if (isLoading) return <Loader />
+  if (isPending) return <Loader />
 
-  if (!isAuthenticated || isGuest) {
+  if (!isAuthenticated || isAnonymous) {
     return <Redirect href={`/auth/signin?redirect_url=${pathname}`} />
   }
 

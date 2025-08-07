@@ -4,9 +4,9 @@ import { useAuth } from '@/core/auth'
 // import { Loader } from '@/components/ui'
 
 const AuthRootLayout = () => {
-  const { isAuthenticated, isLoading, isGuest } = useAuth()
+  const { isAuthenticated, isPending, isAnonymous } = useAuth()
 
-  if (isAuthenticated && !isGuest && !isLoading)
+  if (isAuthenticated && !isAnonymous && !isPending)
     return <Redirect href="/home" />
 
   return (
@@ -18,7 +18,7 @@ const AuthRootLayout = () => {
         <Stack.Screen name="create-password" />
       </Stack>
       {/*<Loader*/}
-      {/*  isLoading={isLoading}*/}
+      {/*  isLoading={isPending}*/}
       {/*  position="bottom"*/}
       {/*/>*/}
     </>

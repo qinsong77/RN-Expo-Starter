@@ -4,11 +4,11 @@ import { Alert } from 'react-native'
 import { useAuth } from './context'
 
 export const useProtectedAction = () => {
-  const { isAuthenticated, isGuest } = useAuth()
+  const { isAuthenticated, isAnonymous } = useAuth()
   const pathname = usePathname()
   return <T extends (...args: any[]) => any>(callback: T) => {
     return (...args: Parameters<T>) => {
-      if (isAuthenticated && !isGuest) {
+      if (isAuthenticated && !isAnonymous) {
         callback(args)
       } else {
         Alert.alert(

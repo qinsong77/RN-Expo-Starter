@@ -1,5 +1,5 @@
-import { Link } from 'expo-router'
-import React, { startTransition, useActionState, useState } from 'react'
+import { Link, useRouter } from 'expo-router'
+import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Keyboard } from 'react-native'
 
@@ -40,95 +40,63 @@ import {
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input'
 import { LinkText } from '@/components/ui/link'
 import { Pressable } from '@/components/ui/pressable'
+import { toast } from '@/components/ui/sonner'
 import { Text } from '@/components/ui/text'
-import { Toast, ToastTitle, useToast } from '@/components/ui/toast'
 import { VStack } from '@/components/ui/vstack'
+import { authClient } from '@/core/auth'
 import { useSafelyGoBack } from '@/core/hooks/use-safely-go-back'
 
 import { AuthViewLayout } from '../layout'
 import { GoogleIcon } from './assets/icons/google'
 
-const USERS = [
-  {
-    email: 'gabrial@gmail.com',
-    password: 'Gabrial@123',
-  },
-  {
-    email: 'tom@gmail.com',
-    password: 'Tom@123',
-  },
-  {
-    email: 'thomas@gmail.com',
-    password: 'Thomas@1234',
-  },
-]
-
 const loginSchema = z.object({
-  email: z.string().min(1, 'Email is required').email(),
+  email: z.email('Invalid email address'),
   password: z.string().min(1, 'Password is required'),
   rememberme: z.boolean().optional(),
 })
 
 type LoginSchemaType = z.infer<typeof loginSchema>
 
-type ActionState = {
-  emailValid: boolean
-  passwordValid: boolean
-}
-
 const LoginWithLeftBackground = () => {
   const {
     control,
     handleSubmit,
-    reset,
-    formState: { errors },
+    setError,
+    formState: { errors, isSubmitting },
   } = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
   })
-  const toast = useToast()
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
 
-  const [actionState, submitAction, isPending] = useActionState(
-    async (prevState: ActionState, data: LoginSchemaType) => {
-      const user = USERS.find((element) => element.email === data.email)
-      if (user) {
-        if (user.password !== data.password) {
-          return { emailValid: true, passwordValid: false }
-        } else {
-          toast.show({
-            placement: 'bottom right',
-            render: ({ id }) => (
-              <Toast
-                nativeID={id}
-                variant="solid"
-                action="success"
-              >
-                <ToastTitle>Logged in successfully!</ToastTitle>
-              </Toast>
-            ),
-          })
-          reset()
-          return { emailValid: true, passwordValid: true }
-        }
-      } else {
-        return { emailValid: false, passwordValid: true }
-      }
-    },
-    { emailValid: true, passwordValid: true },
-  )
+  const onSubmit = async (formData: LoginSchemaType) => {
+    const { data, error } = await authClient.signIn.email({
+      email: formData.email,
+      password: formData.password,
+      rememberMe: formData.rememberme,
+    })
+    console.log('---- sign in log')
+    console.log(data)
+    console.log(error)
+    if (error) {
+      setError('password', {
+        type: 'server',
+        message: error.message || 'Login failed',
+      })
+      // toast.error(error.message || 'Login failed')
+    } else {
+      toast.success('Logged in successfully!')
+      router.replace('/(tabs)/home')
+    }
+  }
 
-  const handleState = () => setShowPassword((show) => !show)
+  const handleShowPasswordState = () => setShowPassword((show) => !show)
   const handleKeyPress = () => {
     Keyboard.dismiss()
-    handleSubmit(submitAction)()
+    handleSubmit(onSubmit)()
   }
-  const goBack = useSafelyGoBack()
 
-  const handleLogin = handleSubmit((data) => {
-    startTransition(() => {
-      submitAction(data)
-    })
-  })
+  const goBack = useSafelyGoBack()
 
   return (
     <VStack
@@ -166,7 +134,7 @@ const LoginWithLeftBackground = () => {
           className="w-full"
         >
           <FormControl
-            isInvalid={!!errors?.email || !actionState.emailValid}
+            isInvalid={!!errors?.email}
             className="w-full"
           >
             <FormControlLabel>
@@ -202,14 +170,12 @@ const LoginWithLeftBackground = () => {
             <FormControlError>
               <FormControlErrorIcon as={AlertTriangle} />
               <FormControlErrorText>
-                {errors?.email?.message ||
-                  (!actionState.emailValid && 'Email ID not found')}
+                {errors?.email?.message}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
-          {/* Label Message */}
           <FormControl
-            isInvalid={!!errors.password || !actionState.passwordValid}
+            isInvalid={!!errors.password}
             className="w-full"
           >
             <FormControlLabel>
@@ -241,7 +207,7 @@ const LoginWithLeftBackground = () => {
                     returnKeyType="done"
                   />
                   <InputSlot
-                    onPress={handleState}
+                    onPress={handleShowPasswordState}
                     className="pr-3"
                   >
                     <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
@@ -252,8 +218,7 @@ const LoginWithLeftBackground = () => {
             <FormControlError>
               <FormControlErrorIcon as={AlertTriangle} />
               <FormControlErrorText>
-                {errors?.password?.message ||
-                  (!actionState.passwordValid && 'Password was incorrect')}
+                {errors?.password?.message}
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
@@ -290,9 +255,10 @@ const LoginWithLeftBackground = () => {
         >
           <Button
             className="w-full"
-            onPress={handleLogin}
+            isDisabled={isSubmitting}
+            onPress={handleSubmit(onSubmit)}
           >
-            {isPending && <ButtonSpinner color={colors.gray[400]} />}
+            {isSubmitting && <ButtonSpinner color={colors.gray[400]} />}
             <ButtonText className="font-medium">Log in</ButtonText>
           </Button>
           <Button

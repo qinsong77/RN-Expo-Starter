@@ -12,7 +12,7 @@ import { Divider } from '@/components/ui/divider'
 import { Text } from '@/components/ui/text'
 import { images } from '@/constant'
 import { LIGHT_COLORS } from '@/constant/color'
-import { useAuth } from '@/core/auth'
+import { authClient, useAuth } from '@/core/auth'
 
 const Item = ({ text, ...rest }: { text: string } & PressableProps) => {
   return (
@@ -25,7 +25,7 @@ const Item = ({ text, ...rest }: { text: string } & PressableProps) => {
 }
 
 export default function Setting() {
-  const { signOut, isGuest } = useAuth()
+  const { isAnonymous, session } = useAuth()
   const { t, i18n } = useTranslation()
   const { setColorScheme, colorScheme: colorSchemeTw } = useColorSchemeTw()
 
@@ -57,7 +57,7 @@ export default function Setting() {
               contentFit="fill"
             />
             <Text className="ml-2 text-xl text-primary-900">
-              Tom Hanks {isGuest && '- Guest'}
+              {session?.user.name} {isAnonymous && '- Guest'}
             </Text>
           </View>
           <Text
@@ -68,7 +68,7 @@ export default function Setting() {
           </Text>
 
           <View className="mt-10">
-            {isGuest ? (
+            {isAnonymous ? (
               <Button
                 variant="outline"
                 size="sm"
@@ -86,7 +86,11 @@ export default function Setting() {
                 size="sm"
                 action="primary"
                 className="my-4"
-                onPress={() => signOut()}
+                onPress={async () => {
+                  await authClient.signOut()
+                  router.dismissAll()
+                  // router.push('/auth/signin')
+                }}
               >
                 <ButtonText>{t('auth.sign_out')}</ButtonText>
               </Button>

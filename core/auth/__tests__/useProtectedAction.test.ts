@@ -32,7 +32,7 @@ describe('useProtectedAction', () => {
     // Mock the useAuth hook to return authenticated and not guest
     ;(useAuth as jest.Mock).mockReturnValue({
       isAuthenticated: true,
-      isGuest: false,
+      isAnonymous: false,
     })
 
     const { result } = renderHook(() => useProtectedAction())
@@ -52,7 +52,7 @@ describe('useProtectedAction', () => {
     // Mock the useAuth hook to return not authenticated or is guest
     ;(useAuth as jest.Mock).mockReturnValue({
       isAuthenticated: false,
-      isGuest: true,
+      isAnonymous: true,
     })
 
     // Mock the usePathname to return a specific path
