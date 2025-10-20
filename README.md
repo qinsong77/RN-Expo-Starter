@@ -36,6 +36,7 @@ Update React Native rely on Expo, check the doc here: [Upgrade Expo SDK](https:/
 ### E2E test
 
 - [Maestro](https://docs.maestro.dev/getting-started/installing-maestro) TBD
+- [Detox](https://github.com/wix/Detox)
 
 ### test provider & mock
 
