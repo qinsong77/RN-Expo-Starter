@@ -18,7 +18,7 @@ For server, refer: [cloudflare-workers-d1-hono-drizzzle-better-auth-template](ht
   - sign in, sign up
   - process as guest
   - protect route and action
-  - [Supabase](https://supabase.com/docs/guides/auth/quickstarts/react-native) - TBD
+  - ~~[Supabase](https://supabase.com/docs/guides/auth/quickstarts/react-native) - TBD~~
 
 ## How to update Expo and react-native
 
