@@ -32,6 +32,7 @@ Update React Native rely on Expo, check the doc here: [Upgrade Expo SDK](https:/
 ## Todo
 
 - GitHub action
+- Integrate with [lingui](https://lingui.dev/introduction) for i18n
 
 ### E2E test
 
@@ -88,7 +89,7 @@ bunx expo install react-native-webview
 
 ### UI components
 
-build the UI components inspired by shadcn/ui, refer from:
+Build the UI components inspired by shadcn/ui, refer from:
 
 - [react-native-reusables](https://github.com/mrzachnugent/react-native-reusables) Universal shadcn/ui for React Native featuring a focused collection of components - Crafted with NativeWind v4 and accessibility in mind.
 - [nativecn-ui](https://github.com/Mobilecn-UI/nativecn-ui)

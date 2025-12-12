@@ -1,5 +1,6 @@
 'use dom'
 
+// https://docs.expo.dev/guides/dom-components/
 export default function DOMComponent({
   name,
 }: {

@@ -10,7 +10,6 @@ import {
   TextInput,
   View,
 } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { EyeOff, LockIcon, Mail } from 'lucide-react-native'
 

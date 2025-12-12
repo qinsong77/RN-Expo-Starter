@@ -3,11 +3,10 @@ import { Text, TextInput, View } from 'react-native'
 
 import { cn } from '@/utils'
 
-export interface NumericInputProps
-  extends Omit<
-    React.ComponentPropsWithoutRef<typeof TextInput>,
-    'value' | 'onChangeText' | 'onChange' | 'defaultValue'
-  > {
+export interface NumericInputProps extends Omit<
+  React.ComponentPropsWithoutRef<typeof TextInput>,
+  'value' | 'onChangeText' | 'onChange' | 'defaultValue'
+> {
   label?: string
   labelClasses?: string
   inputClasses?: string

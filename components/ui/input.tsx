@@ -3,8 +3,9 @@ import { Platform, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
 import { cn } from '@/utils'
 
-export interface InputProps
-  extends React.ComponentPropsWithoutRef<typeof TextInput> {
+export interface InputProps extends React.ComponentPropsWithoutRef<
+  typeof TextInput
+> {
   label?: string
   labelClasses?: string
   inputClasses?: string

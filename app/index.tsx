@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { TravelBusView } from '@/components/travel-bus-view'
-import { Button, Loader, Separator, ThemedText } from '@/components/ui'
+import { Button, Loader, ThemedText } from '@/components/ui'
 import { GUEST_TOKEN } from '@/constant'
 import { useAuth } from '@/core/auth'
 

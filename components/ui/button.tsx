@@ -52,7 +52,8 @@ const buttonTextVariants = cva('text-center font-medium', {
 })
 
 interface ButtonProps
-  extends React.ComponentPropsWithoutRef<typeof Pressable>,
+  extends
+    React.ComponentPropsWithoutRef<typeof Pressable>,
     VariantProps<typeof buttonVariants> {
   label: string
   labelClasses?: string
