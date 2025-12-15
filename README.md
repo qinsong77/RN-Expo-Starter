@@ -14,7 +14,7 @@ For server, refer: [cloudflare-workers-d1-hono-drizzzle-better-auth-template](ht
 - i18n
 - Dark theme
 - Jest & [React Native Testing Library](https://callstack.github.io/react-native-testing-library/)
-- authentication
+- Authentication
   - sign in, sign up
   - process as guest
   - protect route and action
@@ -100,6 +100,8 @@ Build the UI components inspired by shadcn/ui, refer from:
 - style system and ui library [tamagui](https://tamagui.dev/)
 - [react-native-ui-lib](https://github.com/wix/react-native-ui-lib)
 - [Expo UI](https://docs.expo.dev/versions/v53.0.0/sdk/ui/)
+- [uniwind](https://github.com/uni-stack/uniwind) The fastest Tailwind bindings for React Native
+  - [heroui-native](https://github.com/heroui-inc/heroui-native)
 
 ## Chore
 
