@@ -1,11 +1,27 @@
 # React Native Expo Starter
 
-Taking [gluestack-better-auth](https://github.com/qinsong77/RN-Expo-Starter/tree/gluestack-better-auth) more with:
-
-- UI component:[gluestack v2](https://gluestack.io/ui/docs/components/text)
-- Auth: [better-auth](https://www.better-auth.com/docs/integrations/expo)
+## Server
 
 For server, refer: [cloudflare-workers-d1-hono-drizzzle-better-auth-template](https://github.com/qinsong77/cloudflare-workers-d1-hono-drizzzle-better-auth-template)
+
+## History set-ups
+
+### Starter 1.0
+
+Taking [https://github.com/qinsong77/RN-Expo-Starter/tree/1.0.0] more with
+
+- Tailwindcss by [nativewind](https://www.nativewind.dev/v4/overview)
+- Authentication
+- i18n with i18next
+- Universal shadcn/ui for React Native with [react-native-reusables](https://github.com/mrzachnugent/react-native-reusables)
+- etc...
+
+### Gluestack v3, better-auth
+
+Taking [gluestack-better-auth](https://github.com/qinsong77/RN-Expo-Starter/tree/gluestack-better-auth) more with:
+
+- UI component:[gluestack v2](https://gluestack.io/ui/docs/home/overview/introduction)
+- Auth: [better-auth](https://www.better-auth.com/docs/integrations/expo)
 
 ## Features
 
