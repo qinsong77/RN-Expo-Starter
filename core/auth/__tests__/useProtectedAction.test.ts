@@ -1,11 +1,11 @@
+import { act, renderHook } from '@testing-library/react-native'
 import { router, usePathname } from 'expo-router'
 import { Alert } from 'react-native'
 
-import { act, renderHook } from '@testing-library/react-native'
-
-import { useProtectedAction } from '@/core/auth'
-
 import { useAuth } from '../context'
+import { useProtectedAction } from '../useProtectedAction'
+
+jest.mock('../auth-client')
 
 // Mock the useAuth hook
 jest.mock('../context', () => ({
@@ -32,7 +32,7 @@ describe('useProtectedAction', () => {
     // Mock the useAuth hook to return authenticated and not guest
     ;(useAuth as jest.Mock).mockReturnValue({
       isAuthenticated: true,
-      isGuest: false,
+      isAnonymous: false,
     })
 
     const { result } = renderHook(() => useProtectedAction())
@@ -52,7 +52,7 @@ describe('useProtectedAction', () => {
     // Mock the useAuth hook to return not authenticated or is guest
     ;(useAuth as jest.Mock).mockReturnValue({
       isAuthenticated: false,
-      isGuest: true,
+      isAnonymous: true,
     })
 
     // Mock the usePathname to return a specific path
@@ -91,7 +91,7 @@ describe('useProtectedAction', () => {
     })
 
     expect(router.push).toHaveBeenCalledWith(
-      '/(auth)/sign-in?redirect_url=/current-path',
+      '/auth/signin?redirect_url=/current-path',
     )
   })
 })

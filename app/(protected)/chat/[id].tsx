@@ -1,45 +1,31 @@
 import { Stack, useLocalSearchParams } from 'expo-router'
-import { Image, Text, View } from 'react-native'
+import { View } from 'react-native'
 
-import { HeaderBackButton } from '@react-navigation/elements'
+import { Text } from '@/components/ui/text'
 
-import { Container } from '@/components/Container'
-import { ThemedText } from '@/components/ui'
-
-export default function Page() {
-  const { id } = useLocalSearchParams()
+export default function ProtectedChatPlaceholder() {
+  const { id } = useLocalSearchParams<{ id: string | string[] }>()
+  const chatId = Array.isArray(id) ? id[0] : id
 
   return (
-    <Container>
+    <>
       <Stack.Screen
         options={{
-          title: 'chat detail',
-          // not working on ios
-          // headerBackVisible: true,
-          // headerBackButtonMenuEnabled: true,
-          // headerLeft: (props) => <HeaderBackButton {...props} />,
-          // headerStyle: { backgroundColor: '#f4511e' },
-          // headerTintColor: '#fff',
-          // headerTitleStyle: {
-          //   fontWeight: 'bold',
-          // },
-          // headerBackVisible: true,
-          // headerTitle: (props) => {
-          //   console.log(props)
-          //   return (
-          //     <View className="flex flex-row items-center">
-          //       <Image
-          //         className="h-8 w-8"
-          //         source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
-          //       />
-          //       <Text>{props.children}</Text>
-          //     </View>
-          //   )
-          // },
+          title: `Chat ${chatId ?? ''}`.trim(),
+          headerBackTitle: 'Back',
         }}
       />
-      <ThemedText>chat detail</ThemedText>
-      <ThemedText>id: {id}</ThemedText>
-    </Container>
+      <View className="flex-1 p-4">
+        <Text variant="p">
+          If you see this, the protected layout let you through.
+        </Text>
+        <Text
+          variant="muted"
+          className="mt-2"
+        >
+          id: {chatId ?? '(none)'}
+        </Text>
+      </View>
+    </>
   )
 }

@@ -1,3 +1,3 @@
-import { toast, Toaster, useSonner } from 'sonner'
+import { Toaster, toast, useSonner } from 'sonner'
 
 export { useSonner, toast, Toaster }

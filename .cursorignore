@@ -1,0 +1,14 @@
+# Files not in .gitignore that should be ignored by Cursor
+# Note: Cursor automatically ignores .gitignore files and default patterns
+
+# Lock files (bun.lockb is in default ignore, but bun.lock is not)
+bun.lock
+
+# Test coverage reports
+coverage/
+
+# IDE settings
+.vscode/
+
+# Git hooks (personal preference, not in .gitignore)
+.husky/

@@ -1,75 +1,34 @@
-import React, { forwardRef } from 'react'
-import { Platform, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { cn } from '@/lib/utils'
+import { Platform, TextInput, type TextInputProps } from 'react-native'
 
-import { cn } from '@/utils'
-
-export interface InputProps extends React.ComponentPropsWithoutRef<
-  typeof TextInput
-> {
-  label?: string
-  labelClasses?: string
-  inputClasses?: string
-  leadingIcon?: React.ReactNode
-  trailingIcon?: React.ReactNode
-  onTrailingIconPress?: () => void
-}
-
-const Input = forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
-  (
-    {
-      className,
-      label,
-      labelClasses,
-      inputClasses,
-      leadingIcon,
-      trailingIcon,
-      onTrailingIconPress,
-      ...props
-    },
-    ref,
-  ) => (
-    <View className={cn('flex flex-col gap-1.5', className)}>
-      {label && (
-        <Text
-          className={cn('text-base font-medium text-primary', labelClasses)}
-        >
-          {label}
-        </Text>
+function Input({
+  className,
+  ...props
+}: TextInputProps & React.RefAttributes<TextInput>) {
+  return (
+    <TextInput
+      className={cn(
+        'flex h-10 w-full min-w-0 flex-row items-center rounded-md border border-input bg-background px-3 py-1 text-base leading-5 text-foreground shadow-sm shadow-black/5 sm:h-9 dark:bg-input/30',
+        props.editable === false &&
+          cn(
+            'opacity-50',
+            Platform.select({
+              web: 'disabled:pointer-events-none disabled:cursor-not-allowed',
+            }),
+          ),
+        Platform.select({
+          web: cn(
+            'transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground md:text-sm',
+            'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
+            'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
+          ),
+          native: 'placeholder:text-muted-foreground/50',
+        }),
+        className,
       )}
-
-      <View
-        className={cn(
-          'flex flex-row items-center rounded-lg border border-input bg-background',
-          inputClasses,
-        )}
-      >
-        {leadingIcon && <View className="pl-3 pr-2">{leadingIcon}</View>}
-
-        <TextInput
-          ref={ref}
-          className={cn(
-            // add text-base will have line height, test is not align vertical in ios
-            'flex-1 px-3 text-primary/80',
-            Platform.OS === 'ios' ? 'py-4' : 'py-2.5',
-            leadingIcon && 'pl-0',
-            trailingIcon && 'pr-0',
-          )}
-          {...props}
-        />
-
-        {trailingIcon && (
-          <TouchableOpacity
-            onPress={onTrailingIconPress}
-            className="pl-2 pr-3"
-          >
-            {trailingIcon}
-          </TouchableOpacity>
-        )}
-      </View>
-    </View>
-  ),
-)
-
-Input.displayName = 'Input'
+      {...props}
+    />
+  )
+}
 
 export { Input }

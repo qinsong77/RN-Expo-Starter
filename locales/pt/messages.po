@@ -1,0 +1,328 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-04-25 23:00+0800\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: pt\n"
+
+#: app/auth/signup.tsx
+msgid "Account created successfully!"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Account creation failed"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Already have an account?"
+msgstr ""
+
+#: app/(tabs)/_layout.tsx
+#: app/(tabs)/chats.tsx
+msgid "Chats"
+msgstr ""
+
+#: app/(tabs)/setting.tsx
+msgid "Chinese"
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "Confirm password"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Confirm Password"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Continue"
+msgstr ""
+
+#: app/index.tsx
+msgid "Continue as guest"
+msgstr ""
+
+#: components/sso-btns.tsx
+msgid "Continue with Apple"
+msgstr ""
+
+#: app/index.tsx
+msgid "Continue with Email"
+msgstr ""
+
+#: components/sso-btns.tsx
+msgid "Continue with Google"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Create account"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Create your account"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Creating account..."
+msgstr ""
+
+#: app/index.tsx
+msgid ""
+"Discover Endless\n"
+"Possibilities with"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Don't have an account?"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+#: app/auth/signin.tsx
+#: app/auth/signup.tsx
+msgid "Email"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+#: app/auth/signin.tsx
+#: app/auth/signup.tsx
+msgid "Email is required"
+msgstr ""
+
+#. placeholder {0}: user?.email ?? ''
+#: app/(tabs)/setting.tsx
+msgid "Email: {0}"
+msgstr ""
+
+#: app/(tabs)/setting.tsx
+msgid "English"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+msgid "Enter your email to reset your password"
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "Enter your new password below"
+msgstr ""
+
+#: app/(tabs)/_layout.tsx
+#: app/(tabs)/explore.tsx
+msgid "Explore"
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "Failed to reset password"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+msgid "Failed to send reset email"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+msgid "Forgot password?"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Forgot your password?"
+msgstr ""
+
+#: app/modal.tsx
+msgid "Go to home screen"
+msgstr ""
+
+#: app/(tabs)/_layout.tsx
+msgid "Home"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+#: app/auth/signin.tsx
+#: app/auth/signup.tsx
+msgid "Invalid email address"
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "Invalid or missing reset token"
+msgstr ""
+
+#. placeholder {0}: isAnonymous ? 'Yes' : 'No'
+#: app/(tabs)/setting.tsx
+msgid "Is Anonymous: {0}"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "John Doe"
+msgstr ""
+
+#: app/(tabs)/explore.tsx
+msgid "Learn more"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Logged in successfully!"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Login failed"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+#: app/auth/signin.tsx
+#: app/auth/signup.tsx
+msgid "m@example.com"
+msgstr ""
+
+#: app/(tabs)/home.tsx
+msgid "Modal"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Name"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Name is required"
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "New password"
+msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "Open protected chat(Route)"
+msgstr ""
+
+#: app/auth/signin.tsx
+#: app/auth/signup.tsx
+msgid "or"
+msgstr ""
+
+#: app/auth/signin.tsx
+#: app/auth/signup.tsx
+msgid "Password"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Password is required"
+msgstr ""
+
+#: app/auth/signup.tsx
+#: app/auth/update-password.tsx
+msgid "Password must be at least 8 characters"
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "Password updated successfully!"
+msgstr ""
+
+#: app/auth/signup.tsx
+#: app/auth/update-password.tsx
+msgid "Passwords do not match"
+msgstr ""
+
+#: app/auth/signup.tsx
+#: app/auth/update-password.tsx
+msgid "Please confirm your password"
+msgstr ""
+
+#: app/(tabs)/home.tsx
+msgid "Press below to open the modal, Long press to see the preview and menu"
+msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "Protected action"
+msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "Protected action and route"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+#: app/auth/update-password.tsx
+msgid "Remember your password?"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+msgid "Reset email sent! Please check your inbox."
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "Reset password"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+msgid "Send reset link"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+msgid "Sending..."
+msgstr ""
+
+#: app/(tabs)/_layout.tsx
+#: app/(tabs)/setting.tsx
+msgid "Setting"
+msgstr ""
+
+#: app/auth/forgot-password.tsx
+#: app/auth/signup.tsx
+#: app/auth/update-password.tsx
+msgid "Sign in"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Sign in to your account"
+msgstr ""
+
+#: app/(tabs)/setting.tsx
+msgid "Sign out"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Sign up"
+msgstr ""
+
+#: app/index.tsx
+msgid "Starter"
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Submitting..."
+msgstr ""
+
+#: app/modal.tsx
+msgid "This is a modal"
+msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "To be continued..."
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "Update password"
+msgstr ""
+
+#: app/auth/update-password.tsx
+msgid "Updating..."
+msgstr ""
+
+#. placeholder {0}: user?.name ?? ''
+#: app/(tabs)/setting.tsx
+msgid "User Name: {0} "
+msgstr ""
+
+#: app/auth/signin.tsx
+msgid "Welcome back! Please sign in to continue"
+msgstr ""
+
+#: app/(tabs)/home.tsx
+msgid "Welcome!"
+msgstr ""
+
+#: app/auth/signup.tsx
+msgid "Welcome! Please fill in the details to get started."
+msgstr ""
+
+#: app/index.tsx
+msgid "Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Starter"
+msgstr ""

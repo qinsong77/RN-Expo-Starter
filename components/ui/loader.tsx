@@ -1,10 +1,9 @@
-import { ActivityIndicator, Dimensions, Platform, View } from 'react-native'
+import { cn } from '@/lib/utils'
+import { ActivityIndicator, Platform, View } from 'react-native'
 
-import { useColorTokens } from '@/hooks'
-import { cn } from '@/utils'
+import { useThemeColors } from '@/hooks/use-theme-colors'
 
 const osName = Platform.OS
-const screenHeight = Dimensions.get('screen').height
 
 export const Loader = ({
   isLoading = true,
@@ -13,19 +12,16 @@ export const Loader = ({
   isLoading?: boolean
   position?: 'middle' | 'bottom'
 }) => {
-  const { foreground } = useColorTokens()
+  const { foreground } = useThemeColors()
 
   if (!isLoading) return null
 
   return (
     <View
       className={cn(
-        'absolute z-10 flex h-full w-full items-center bg-muted-foreground opacity-35',
+        'absolute inset-0 z-10 flex items-center bg-background opacity-55',
         position === 'middle' ? 'justify-center' : 'justify-end pb-52',
       )}
-      style={{
-        height: screenHeight,
-      }}
     >
       <ActivityIndicator
         animating={isLoading}

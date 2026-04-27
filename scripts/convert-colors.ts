@@ -3,61 +3,162 @@ import path from 'path'
 
 const cssContent = fs.readFileSync('./global.css', 'utf8')
 
-const rootVariablesRegex = /:root\s*{[^}]*}/
-const darkRootVariablesRegex = /.dark:root\s*{[^}]*}/
+/**
+ * Updated Regex to find Tailwind v4 @variant blocks
+ */
+const lightVariantRegex = /@variant\s+light\s*\{([\s\S]*?)\}(?=\s*[\}])/
+const darkVariantRegex = /@variant\s+dark\s*\{([\s\S]*?)\}/
 
-const rootMatch = cssContent.match(rootVariablesRegex)
-const darkRootMatch = cssContent.match(darkRootVariablesRegex)
+const lightMatch = cssContent.match(lightVariantRegex)
+const darkMatch = cssContent.match(darkVariantRegex)
 
-const parseVariables = (block: string) => {
-  const variables: Record<string, any> = {}
-  block
-    .slice(block.indexOf('{') + 1, block.indexOf('}'))
-    .split(';')
-    .forEach((prop) => {
-      const [key, value] = prop.split(':').map((part) => part.trim())
-      if (key && value) {
-        variables[key] = value
-      }
-    })
+const parseVariables = (content: string) => {
+  const variables: Record<string, string> = {}
+  const cleanContent = content.replace(/\/\*[\s\S]*?\*\//g, '')
+
+  cleanContent.split(';').forEach((prop) => {
+    const colonIndex = prop.indexOf(':')
+    if (colonIndex === -1) return
+
+    const key = prop.slice(0, colonIndex).trim()
+    const value = prop.slice(colonIndex + 1).trim()
+
+    if (key && value && key.startsWith('--')) {
+      variables[key] = value
+    }
+  })
   return variables
 }
 
 function convertCssVariableName(key: string) {
-  let newKey = key.replace(/^--/, '')
-
-  newKey = newKey.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase())
-
+  // 1. Remove leading dashes and the 'color-' prefix
+  let newKey = key.replace(/^--/, '').replace(/^color-/, '')
+  // 2. Convert kebab-case to camelCase
+  newKey = newKey.replace(/-([a-z0-9])/g, (_match, char) => char.toUpperCase())
   return newKey
 }
 
-const hslRegex = /^([\d.]+) ([\d.]+)% ([\d.]+)%$/
+// OKLCH to RGB conversion utilities (Reference: https://bottosson.github.io/posts/oklab/)
+function oklchToOklab(
+  l: number,
+  c: number,
+  h: number,
+): [number, number, number] {
+  const hRad = (h * Math.PI) / 180
+  const labA = c * Math.cos(hRad)
+  const labB = c * Math.sin(hRad)
+  return [l, labA, labB]
+}
 
-function isHSLValue(value: string) {
-  return hslRegex.test(value)
+function oklabToLinearSrgb(
+  L: number,
+  a: number,
+  b: number,
+): [number, number, number] {
+  const l_ = L + 0.3963377774 * a + 0.2158037573 * b
+  const m_ = L - 0.1055613458 * a - 0.0638541728 * b
+  const s_ = L - 0.0894841775 * a - 1.291485548 * b
+
+  const lp = l_ * l_ * l_
+  const mp = m_ * m_ * m_
+  const sp = s_ * s_ * s_
+
+  return [
+    +4.0767416621 * lp - 3.3077115913 * mp + 0.2309699292 * sp,
+    -1.2684380046 * lp + 2.6097574011 * mp - 0.3413193965 * sp,
+    -0.0041960863 * lp - 0.7034186147 * mp + 1.707614701 * sp,
+  ]
+}
+
+function linearSrgbToSrgb(x: number): number {
+  if (x <= 0.0031308) return 12.92 * x
+  return 1.055 * Math.pow(Math.max(0, x), 1 / 2.4) - 0.055
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
+
+function oklchToRgb(l: number, c: number, h: number): [number, number, number] {
+  const [labL, labA, labB] = oklchToOklab(l, c, h)
+  const [linearR, linearG, linearB] = oklabToLinearSrgb(labL, labA, labB)
+
+  const r = Math.round(clamp(linearSrgbToSrgb(linearR), 0, 1) * 255)
+  const g = Math.round(clamp(linearSrgbToSrgb(linearG), 0, 1) * 255)
+  const b = Math.round(clamp(linearSrgbToSrgb(linearB), 0, 1) * 255)
+
+  return [r, g, b]
+}
+
+/**
+ * Updated Regex to handle:
+ * 1. Multiple spaces: oklch(1  0  0)
+ * 2. Alpha slashes: oklch(1 0 0 / 10%)
+ */
+const oklchRegex =
+  /oklch\(\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.%]+))?\s*\)/
+
+function convertColorValue(value: string): string {
+  const match = value.match(oklchRegex)
+  if (match) {
+    const l = parseFloat(match[1])
+    const c = parseFloat(match[2])
+    const h = parseFloat(match[3])
+    const alphaStr = match[4]
+
+    const [r, g, b] = oklchToRgb(l, c, h)
+
+    if (alphaStr) {
+      const alpha = alphaStr.endsWith('%')
+        ? parseFloat(alphaStr) / 100
+        : parseFloat(alphaStr)
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`
+    }
+    return `rgb(${r}, ${g}, ${b})`
+  }
+  return value
 }
 
 const formatForReactNative = (variables: Record<string, string>) => {
-  return Object.entries(variables)
-    .map(([key, value]) => {
-      if (isHSLValue(value))
-        return `  ${convertCssVariableName(key)}: 'hsl(${value})',`
-      else return `  ${convertCssVariableName(key)}: '${value}',`
-    })
-    .join('\n')
+  const entries = Object.entries(variables)
+  if (entries.length === 0) return ''
+
+  return (
+    '\n' +
+    entries
+      .map(
+        ([key, value]) =>
+          `  ${convertCssVariableName(key)}: '${convertColorValue(value)}',`,
+      )
+      .join('\n') +
+    '\n'
+  )
 }
 
-const rootVariables = parseVariables(rootMatch![0])
-const darkRootVariables = parseVariables(darkRootMatch![0])
+if (!lightMatch || !darkMatch) {
+  console.error('Error: Could not find @variant blocks in global.css')
+  process.exit(1)
+}
 
-const colorTsContent = `
-// bun run generate:color-token  Generated by script from global.css
+const lightVariables = parseVariables(lightMatch[1])
+const darkVariables = parseVariables(darkMatch[1])
 
-export const LIGHT_COLORS = {${formatForReactNative(rootVariables)}} as const
-export const DARK_COLORS = {${formatForReactNative(darkRootVariables)}} as const
+const colorTsContent = `// Auto-generated by: bun run generate:color-token
+// Source: global.css (oklch converted to rgb for React Native compatibility)
+
+export const LIGHT_COLORS = {${formatForReactNative(lightVariables)}} as const
+
+export const DARK_COLORS = {${formatForReactNative(darkVariables)}} as const
+
+export type ColorToken = keyof typeof LIGHT_COLORS
 `
 
-const tsFilePath = path.join('./', 'constant', 'color.ts')
+const outputDir = path.join('./', 'constants')
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true })
+}
+
+const tsFilePath = path.join(outputDir, 'theme-colors.ts')
 fs.writeFileSync(tsFilePath, colorTsContent, 'utf8')
 
-console.log('React Native color constants have been saved to constant/color.ts')
+console.log(`✅ Success! React Native color constants saved to ${tsFilePath}`)

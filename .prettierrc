@@ -9,6 +9,24 @@
   "bracketSpacing": true,
   "singleAttributePerLine": true,
   "endOfLine": "lf",
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindAttributes": ["className"]
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "tailwindStylesheet": "./global.css",
+  "tailwindAttributes": ["className"],
+  "tailwindFunctions": ["clsx", "cn", "cva"],
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@/app/(.*)$",
+    "^@/assets/(.*)$",
+    "^@/constants/(.*)$",
+    "^@/feature/(.*)$",
+    "^@/components/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/core/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

@@ -1,69 +1,80 @@
+import { Trans } from '@lingui/react/macro'
 import { Redirect, router } from 'expo-router'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { TravelBusView } from '@/components/travel-bus-view'
-import { Button, Loader, ThemedText } from '@/components/ui'
-import { GUEST_TOKEN } from '@/constant'
-import { useAuth } from '@/core/auth'
+import { Button } from '@/components/ui/button'
+import { Loader } from '@/components/ui/loader'
+import { Text } from '@/components/ui/text'
 
-const Welcome = () => {
-  const { isLoading, isAuthenticated, signIn } = useAuth()
+import { authClient, useAuth } from '@/core/auth'
 
-  if (!isLoading && isAuthenticated) return <Redirect href="/home" />
+export default function Welcome() {
+  const { isPending, isAuthenticated } = useAuth()
+
+  if (!isPending && isAuthenticated) return <Redirect href="/home" />
 
   return (
-    <SafeAreaView className="h-full">
+    <SafeAreaView style={{ flex: 1 }}>
       <Loader
-        isLoading={isLoading}
+        isLoading={isPending}
         position="bottom"
       />
-
-      <ScrollView
-        contentContainerStyle={{
-          height: '100%',
-        }}
-      >
-        <View className="flex h-full w-full justify-center px-4">
+      <ScrollView>
+        <View className="mt-10 flex justify-center px-4 md:mt-12">
           <TravelBusView />
           <View className="mt-2">
-            <ThemedText className="text-center text-2xl font-bold">
-              Discover Endless{'\n'}
-              Possibilities with{' '}
-              <ThemedText className="text-blue-600">Starter</ThemedText>
-            </ThemedText>
+            <Text
+              className="text-center"
+              variant="h3"
+            >
+              <Trans>Discover Endless{'\n'}Possibilities with</Trans>{' '}
+              <Text
+                className="text-blue-600"
+                variant="h3"
+              >
+                <Trans>Starter</Trans>
+              </Text>
+            </Text>
           </View>
 
-          <Text className="mt-5 text-center text-sm text-primary/80">
-            Where Creativity Meets Innovation: Embark on a Journey of Limitless
-            Exploration with Starter
+          <Text
+            className="mt-5 text-center"
+            variant="p"
+          >
+            <Trans>
+              Where Creativity Meets Innovation: Embark on a Journey of
+              Limitless Exploration with Starter
+            </Trans>
           </Text>
 
           <Button
-            label="Continue with Email"
-            onPress={() => router.push('/sign-in')}
+            onPress={() => router.push('/auth/signin')}
             size="sm"
+            variant="default"
             className="mt-7 w-full"
-          />
+          >
+            <Text>
+              <Trans>Continue with Email</Trans>
+            </Text>
+          </Button>
 
           <Button
             variant="secondary"
-            label="Continue as guest"
             onPress={async () => {
-              // todo guest login
-              await signIn({
-                email: GUEST_TOKEN,
-                password: 'mocked_password',
-              })
+              await authClient.signIn.anonymous()
               router.replace('/(tabs)/home')
             }}
             size="sm"
             className="mt-4 w-full"
-          />
+          >
+            <Text>
+              <Trans>Continue as guest</Trans>
+            </Text>
+          </Button>
         </View>
       </ScrollView>
     </SafeAreaView>
   )
 }
-
-export default Welcome

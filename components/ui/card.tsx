@@ -1,26 +1,29 @@
-import { Text, View } from 'react-native'
+import { cn } from '@/lib/utils'
+import { View, type ViewProps } from 'react-native'
 
-import { cn } from '@/utils'
+import { Text, TextClassContext } from '@/components/ui/text'
 
-function Card({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof View>) {
+function Card({ className, ...props }: ViewProps & React.RefAttributes<View>) {
   return (
-    <View
-      className={cn('rounded-xl border border-border', className)}
-      {...props}
-    />
+    <TextClassContext.Provider value="text-card-foreground">
+      <View
+        className={cn(
+          'flex flex-col gap-6 rounded-xl border border-border bg-card py-6 shadow-sm shadow-black/5',
+          className,
+        )}
+        {...props}
+      />
+    </TextClassContext.Provider>
   )
 }
 
 function CardHeader({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof View>) {
+}: ViewProps & React.RefAttributes<View>) {
   return (
     <View
-      className={cn('p-4', className)}
+      className={cn('flex flex-col gap-1.5 px-6', className)}
       {...props}
     />
   )
@@ -29,13 +32,12 @@ function CardHeader({
 function CardTitle({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Text>) {
+}: React.ComponentProps<typeof Text> & React.RefAttributes<Text>) {
   return (
     <Text
-      className={cn(
-        'text-2xl font-semibold tracking-tight text-primary',
-        className,
-      )}
+      role="heading"
+      aria-level={3}
+      className={cn('leading-none font-semibold', className)}
       {...props}
     />
   )
@@ -44,7 +46,7 @@ function CardTitle({
 function CardDescription({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Text>) {
+}: React.ComponentProps<typeof Text> & React.RefAttributes<Text>) {
   return (
     <Text
       className={cn('text-sm text-muted-foreground', className)}
@@ -56,75 +58,25 @@ function CardDescription({
 function CardContent({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof View>) {
+}: ViewProps & React.RefAttributes<View>) {
   return (
     <View
-      className={cn('p-4 pt-0', className)}
+      className={cn('px-6', className)}
       {...props}
     />
   )
 }
 
-// TODO: style
 function CardFooter({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof View>) {
+}: ViewProps & React.RefAttributes<View>) {
   return (
     <View
-      className={cn(className, 'flex flex-row items-center p-4 pt-0')}
+      className={cn('flex flex-row items-center px-6', className)}
       {...props}
     />
   )
 }
 
-interface SimpleCardProps {
-  className?: string
-  title?: string
-  description?: string
-  content?: string
-  footer?: string
-}
-
-function SimpleCard({
-  className,
-  title,
-  description,
-  content,
-  footer,
-}: SimpleCardProps) {
-  return (
-    <Card className={className}>
-      <CardHeader>
-        {title && (
-          <Text className="text-2xl font-semibold tracking-tight text-primary">
-            {title}
-          </Text>
-        )}
-        {description && (
-          <Text className="text-sm text-muted-foreground">{description}</Text>
-        )}
-      </CardHeader>
-      {content && (
-        <CardContent>
-          <Text className="text-base text-primary">{content}</Text>
-        </CardContent>
-      )}
-      {footer && (
-        <CardFooter>
-          <Text className="text-sm text-muted-foreground">{footer}</Text>
-        </CardFooter>
-      )}
-    </Card>
-  )
-}
-
-export {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  SimpleCard,
-}
+export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }

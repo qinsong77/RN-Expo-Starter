@@ -9,3 +9,9 @@ app.json
 
 # asset
 assets/**/*.json
+
+# chore
+.cursorignore
+expo-env.d.ts
+uniwind-types.d.ts
+global.css

@@ -2,20 +2,24 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "baseUrl": ".",
+    "types": ["jest"],
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/features": ["features/index.ts"],
-      "@/hooks": ["core/hooks/index.ts"],
-      "@/utils": ["core/utils/index.ts"],
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@server/*": [
+        "../cloudflare-workers-d1-hono-drizzle-better-auth-template/src/*"
+      ],
+      "~/*": [
+        "../cloudflare-workers-d1-hono-drizzle-better-auth-template/src/*"
+      ]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
+    "uniwind-types.d.ts",
     "expo-env.d.ts",
-    "nativewind-env.d.ts"
+    "lingui.config.ts",
+    "types/server.d.ts"
   ]
 }

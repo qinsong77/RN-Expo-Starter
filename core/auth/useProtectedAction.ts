@@ -1,14 +1,18 @@
 import { router, usePathname } from 'expo-router'
 import { Alert } from 'react-native'
 
+import { createLog } from '@/core/logger'
+
 import { useAuth } from './context'
 
+const log = createLog('useProtectedAction')
+
 export const useProtectedAction = () => {
-  const { isAuthenticated, isGuest } = useAuth()
+  const { isAuthenticated, isAnonymous } = useAuth()
   const pathname = usePathname()
   return <T extends (...args: any[]) => any>(callback: T) => {
     return (...args: Parameters<T>) => {
-      if (isAuthenticated && !isGuest) {
+      if (isAuthenticated && !isAnonymous) {
         callback(args)
       } else {
         Alert.alert(
@@ -17,14 +21,14 @@ export const useProtectedAction = () => {
           [
             {
               text: 'Cancel',
-              onPress: () => console.log('Cancel Pressed'),
+              onPress: () => log.debug('Cancel Pressed'),
               style: 'cancel',
             },
             {
               text: 'OK',
               onPress: () => {
                 // todo add search parameter?
-                router.push(`/(auth)/sign-in?redirect_url=${pathname}`)
+                router.push(`/auth/signin?redirect_url=${pathname}`)
               },
             },
           ],

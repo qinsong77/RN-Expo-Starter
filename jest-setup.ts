@@ -25,27 +25,7 @@ jest.doMock('react-native', () => {
   )
 })
 
-jest.mock('i18next', () => ({
-  currentLocale: 'en',
-  t: (key: string, params: Record<string, string>) => {
-    return `${key} ${JSON.stringify(params)}`
-  },
-  translate: (key: string, params: Record<string, string>) => {
-    return `${key} ${JSON.stringify(params)}`
-  },
-}))
-
 jest.mock('expo-localization', () => ({
   ...jest.requireActual('expo-localization'),
   getLocales: () => [{ languageTag: 'en-US', textDirection: 'ltr' }],
-}))
-
-jest.mock('./translation/index', () => ({
-  default: {
-    locale: 'en',
-    t: (key: string, params: Record<string, string>) => {
-      return `${key} ${JSON.stringify(params)}`
-    },
-    numberToCurrency: jest.fn(),
-  },
 }))

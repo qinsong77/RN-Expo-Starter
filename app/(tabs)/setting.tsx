@@ -1,107 +1,157 @@
-import { Image } from 'expo-image'
+import { useLingui } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { router } from 'expo-router'
-import { useTranslation } from 'react-i18next'
-import { Pressable, PressableProps, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { MoonStar, Sunset, TvMinimalIcon } from 'lucide-react-native'
+import { StyleSheet, View } from 'react-native'
+import { Uniwind, useUniwind } from 'uniwind'
 
-import { MaterialIcons } from '@expo/vector-icons'
-import { useColorScheme as useColorSchemeTw } from 'nativewind/dist/stylesheet'
+import ParallaxScrollView from '@/components/parallax-scroll-view'
+import { Button } from '@/components/ui/button'
+import { Icon } from '@/components/ui/icon'
+import { IconSymbol } from '@/components/ui/icon-symbol'
+import { Label } from '@/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Separator } from '@/components/ui/separator'
+import { Text } from '@/components/ui/text'
 
-import { Button, Separator } from '@/components/ui'
-import { images } from '@/constant'
-import { LIGHT_COLORS } from '@/constant/color'
-import { useAuth } from '@/core/auth'
+import { authClient, useAuth } from '@/core/auth'
+import { changeLanguage } from '@/core/i18n/lingui'
+import { createLog } from '@/core/logger'
 
-const Item = ({ text, ...rest }: { text: string } & PressableProps) => {
+const log = createLog('settings')
+
+type Theme = 'system' | 'light' | 'dark'
+
+const ThemeIndicator = () => {
+  const { theme, hasAdaptiveThemes } = useUniwind()
+
+  log.debug('theme', theme)
+
   return (
-    <Pressable {...rest}>
-      <View>
-        <Text className="my-4 text-primary">{text}</Text>
+    <View>
+      <View className="rounded bg-gray-100 p-2 dark:bg-gray-800">
+        <Text className="text-sm text-gray-600 dark:text-gray-300">
+          Active theme: {theme}
+        </Text>
+        <Text className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          {hasAdaptiveThemes ? 'Following system theme' : 'Fixed theme'}
+        </Text>
       </View>
-    </Pressable>
+      <RadioGroup
+        value={hasAdaptiveThemes ? 'system' : theme}
+        onValueChange={(val) => {
+          log.debug('theme change', val)
+          // @ts-ignore
+          Uniwind.setTheme(val)
+        }}
+        className="mt-4 gap-4"
+      >
+        <View className="flex flex-row items-center gap-3">
+          <RadioGroupItem
+            value="system"
+            id="r1"
+          />
+          <Label htmlFor="r1">system</Label>
+          <Icon as={TvMinimalIcon} />
+        </View>
+        <View className="flex flex-row items-center gap-3">
+          <RadioGroupItem
+            value="dark"
+            id="r2"
+          />
+          <Label htmlFor="r2">dark</Label>
+          <Icon as={MoonStar} />
+        </View>
+        <View className="flex flex-row items-center gap-3">
+          <RadioGroupItem
+            value="light"
+            id="r3"
+          />
+          <Label htmlFor="r3">light</Label>
+          <Icon as={Sunset} />
+        </View>
+      </RadioGroup>
+    </View>
   )
 }
 
-export default function Setting() {
-  const { signOut, isGuest } = useAuth()
-  const { t, i18n } = useTranslation()
-  const { setColorScheme, colorScheme: colorSchemeTw } = useColorSchemeTw()
-
-  const toggleLanguage = (locale: 'en' | 'zh') => {
-    i18n.changeLanguage(locale)
-  }
-
+export default function SettingScreen() {
+  const { session, isAnonymous } = useAuth()
+  log.debug('isAnonymous', isAnonymous)
+  const { i18n } = useLingui()
+  const user = session?.user
   return (
-    <SafeAreaView className="flex h-full">
-      <View className="absolute left-0 top-0 h-72 w-full rounded-b-xl bg-orange-500" />
-
-      <View className="flex h-full px-4">
-        <View className="flex flex-row items-center">
-          <MaterialIcons
-            name="settings"
-            size={32}
-            color={LIGHT_COLORS.background}
-          />
-          <Text className="ml-2 text-2xl font-semibold text-white">
-            {t('settings.title')}
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerImage={
+        <IconSymbol
+          size={310}
+          color="#808080"
+          name="chevron.left.forwardslash.chevron.right"
+          style={styles.headerImage}
+        />
+      }
+    >
+      <Text variant="h2">
+        <Trans>Setting</Trans>
+      </Text>
+      <View className="gap-4">
+        <View>
+          <Text>
+            <Trans>User Name: {user?.name ?? ''} </Trans>
+          </Text>
+          <Text>
+            <Trans>Email: {user?.email ?? ''}</Trans>
+          </Text>
+          <Text>
+            <Trans>Is Anonymous: {isAnonymous ? 'Yes' : 'No'}</Trans>
           </Text>
         </View>
-        <View className="mt-12 flex h-full rounded-2xl bg-background px-6 py-4 shadow dark:shadow-gray-700">
-          <View className="flex flex-row items-center">
-            <Image
-              alt="avatar"
-              source={images.adaptive}
-              style={{ width: 40, height: 40, borderRadius: 40 }}
-              contentFit="fill"
-            />
-            <Text className="ml-2 text-xl text-primary">
-              Tom Hanks {isGuest && '- Guest'}
-            </Text>
-          </View>
-          <Separator className="my-6" />
-          <Text className="mb-2 text-base text-primary/70">
-            {t('settings.account_setting')}
+        <Button
+          variant="secondary"
+          onPress={async () => {
+            await authClient.signOut()
+            router.replace('/')
+          }}
+        >
+          <Text>
+            <Trans>Sign out</Trans>
           </Text>
-
-          {isGuest ? (
-            <Button
-              size="sm"
-              variant="secondary"
-              className="my-4"
-              label={t('auth.sing_up')}
-              onPress={() => {
-                router.push('/(auth)/sign-in')
-              }}
-            />
-          ) : (
-            <Button
-              size="sm"
-              variant="secondary"
-              className="my-4"
-              label={t('auth.sign_out')}
-              onPress={() => signOut()}
-            />
-          )}
-
-          <Item
-            text={t('theme_switch')}
-            onPress={() =>
-              setColorScheme(colorSchemeTw === 'dark' ? 'light' : 'dark')
-            }
-          />
-
-          <Separator className="my-4" />
-
-          <Text className="mb-2 text-base text-primary/70">
-            {t('settings.more')}
+        </Button>
+        <Separator />
+        <Button
+          variant="outline"
+          onPress={async () => {
+            await changeLanguage('en')
+          }}
+        >
+          <Text>
+            <Trans>English</Trans>
           </Text>
-
-          <Item
-            text={t('lang_switch')}
-            onPress={() => toggleLanguage(i18n.language === 'zh' ? 'en' : 'zh')}
-          />
-        </View>
+        </Button>
+        <Button
+          variant="outline"
+          onPress={async () => {
+            await changeLanguage('zh')
+          }}
+        >
+          <Text>
+            <Trans>Chinese</Trans>
+          </Text>
+        </Button>
+        <Text>Current language: {i18n.locale ?? 'en'}</Text>
+        <Separator />
+        <ThemeIndicator />
       </View>
-    </SafeAreaView>
+    </ParallaxScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  headerImage: {
+    color: '#808080',
+    bottom: -90,
+    left: -35,
+    position: 'absolute',
+  },
+})

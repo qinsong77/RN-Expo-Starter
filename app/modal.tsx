@@ -1,17 +1,26 @@
-import { StatusBar } from 'expo-status-bar'
-import { Platform } from 'react-native'
+import { Trans } from '@lingui/react/macro'
+import { Link } from 'expo-router'
+import { View } from 'react-native'
 
-import { InternalizationExample } from 'components/InternalizationExample'
+import { Text } from '@/components/ui/text'
 
-import { SafeContainer } from '@/components/Container'
-
-export default function Modal() {
+export default function ModalScreen() {
   return (
-    <>
-      <SafeContainer>
-        <InternalizationExample />
-      </SafeContainer>
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
-    </>
+    <View className="flex-1 items-center justify-center p-4">
+      <Text className="text-2xl font-bold">
+        <Trans>This is a modal</Trans>
+      </Text>
+      <Link
+        style={{
+          marginTop: 10,
+        }}
+        href="/"
+        dismissTo
+      >
+        <Text className="text-blue-500">
+          <Trans>Go to home screen</Trans>
+        </Text>
+      </Link>
+    </View>
   )
 }
