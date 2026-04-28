@@ -15,3 +15,7 @@ assets/**/*.json
 expo-env.d.ts
 uniwind-types.d.ts
 global.css
+locales
+.agents
+.claude
+AGENTS.md

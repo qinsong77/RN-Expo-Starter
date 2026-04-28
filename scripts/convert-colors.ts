@@ -6,7 +6,7 @@ const cssContent = fs.readFileSync('./global.css', 'utf8')
 /**
  * Updated Regex to find Tailwind v4 @variant blocks
  */
-const lightVariantRegex = /@variant\s+light\s*\{([\s\S]*?)\}(?=\s*[\}])/
+const lightVariantRegex = /@variant\s+light\s*\{([\s\S]*?)\}/
 const darkVariantRegex = /@variant\s+dark\s*\{([\s\S]*?)\}/
 
 const lightMatch = cssContent.match(lightVariantRegex)

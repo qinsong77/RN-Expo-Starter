@@ -3,10 +3,10 @@ import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { Link, router, useLocalSearchParams } from 'expo-router'
-import * as React from 'react'
+import { ArrowLeft } from 'lucide-react-native'
+import { useRef } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, type TextInput, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -14,6 +14,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from '@/components/ui/sonner'
 import { Text } from '@/components/ui/text'
+
+import { useThemeColors } from '@/hooks/use-theme-colors'
 
 import { authClient } from '@/core/auth'
 import { createLog } from '@/core/logger'
@@ -39,7 +41,8 @@ type UpdatePasswordFormData = z.infer<typeof updatePasswordSchema>
 export default function UpdatePasswordScreen() {
   const { t } = useLingui()
   const { token } = useLocalSearchParams<{ token?: string }>()
-  const confirmPasswordInputRef = React.useRef<TextInput>(null)
+  const colors = useThemeColors()
+  const confirmPasswordInputRef = useRef<TextInput>(null)
 
   const {
     control,
@@ -49,10 +52,7 @@ export default function UpdatePasswordScreen() {
   } = useForm<UpdatePasswordFormData>({
     resolver: zodResolver(updatePasswordSchema),
     mode: 'onTouched',
-    defaultValues: {
-      newPassword: '',
-      confirmPassword: '',
-    },
+    defaultValues: { newPassword: '', confirmPassword: '' },
   })
 
   function onPasswordSubmitEditing() {
@@ -64,7 +64,6 @@ export default function UpdatePasswordScreen() {
       toast.error(t`Invalid or missing reset token`)
       return
     }
-
     const { data, error } = await authClient.resetPassword({
       newPassword: formData.newPassword,
       token,
@@ -83,24 +82,42 @@ export default function UpdatePasswordScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View className="flex-1 pt-safe pb-safe">
       <ScrollView
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="interactive"
         automaticallyAdjustKeyboardInsets
       >
-        <View className="mt-10 w-full gap-6 p-6 md:mt-16">
-          <View className="gap-2">
-            <Text className="text-center text-xl font-semibold sm:text-left">
+        <View className="w-full gap-8 p-6 pt-8">
+          {/* Back */}
+          <Link
+            href="/auth/signin"
+            asChild
+          >
+            <Button
+              variant="ghost"
+              size="icon"
+              className="self-start"
+            >
+              <ArrowLeft
+                size={20}
+                color={colors.foreground}
+              />
+            </Button>
+          </Link>
+
+          {/* Heading */}
+          <View className="gap-1.5">
+            <Text className="text-3xl font-bold tracking-tight">
               <Trans>Reset password</Trans>
             </Text>
-            <Text className="text-center text-sm text-muted-foreground sm:text-left">
+            <Text variant="muted">
               <Trans>Enter your new password below</Trans>
             </Text>
           </View>
 
-          <View className="gap-6">
-            {/* New Password Field */}
+          {/* Form */}
+          <View className="gap-5">
             <View className="gap-1.5">
               <Label htmlFor="newPassword">
                 <Trans>New password</Trans>
@@ -129,7 +146,6 @@ export default function UpdatePasswordScreen() {
               )}
             </View>
 
-            {/* Confirm Password Field */}
             <View className="gap-1.5">
               <Label htmlFor="confirmPassword">
                 <Trans>Confirm password</Trans>
@@ -160,7 +176,6 @@ export default function UpdatePasswordScreen() {
               )}
             </View>
 
-            {/* Submit Button */}
             <Button
               className="w-full"
               onPress={handleSubmit(onSubmit)}
@@ -176,9 +191,9 @@ export default function UpdatePasswordScreen() {
             </Button>
           </View>
 
-          <View className="flex-row flex-wrap items-center justify-center">
-            <Text className="text-sm">
-              <Trans>Remember your password?</Trans>{' '}
+          <View className="flex-row flex-wrap items-center justify-center gap-1">
+            <Text className="text-sm text-muted-foreground">
+              <Trans>Remember your password?</Trans>
             </Text>
             <Link href="/auth/signin">
               <Text className="text-sm text-primary underline underline-offset-4">
@@ -188,6 +203,6 @@ export default function UpdatePasswordScreen() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }

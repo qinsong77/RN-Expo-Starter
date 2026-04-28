@@ -3,10 +3,10 @@ import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { Link, router } from 'expo-router'
-import * as React from 'react'
+import { Rocket } from 'lucide-react-native'
+import { useRef } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, type TextInput, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { z } from 'zod'
 
 import { SSOBtns } from '@/components/sso-btns'
@@ -33,7 +33,7 @@ type LoginFormData = z.infer<typeof loginSchema>
 
 export default function SignInScreen() {
   const { t } = useLingui()
-  const passwordInputRef = React.useRef<TextInput>(null)
+  const passwordInputRef = useRef<TextInput>(null)
 
   const {
     control,
@@ -43,10 +43,7 @@ export default function SignInScreen() {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     mode: 'onTouched',
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+    defaultValues: { email: '', password: '' },
   })
 
   function onEmailSubmitEditing() {
@@ -72,24 +69,38 @@ export default function SignInScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View className="flex-1 pt-safe pb-safe">
       <ScrollView
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="interactive"
         automaticallyAdjustKeyboardInsets
       >
-        <View className="mt-10 w-full gap-6 p-6 md:mt-16">
-          <View className="gap-2">
-            <Text className="text-center text-xl font-semibold sm:text-left">
+        <View className="w-full gap-8 p-6 pt-8">
+          {/* Brand mark */}
+          <View className="flex-row items-center gap-2.5">
+            <View className="h-8 w-8 items-center justify-center rounded-lg bg-primary">
+              <Rocket
+                size={15}
+                color="white"
+              />
+            </View>
+            <Text className="text-sm font-semibold text-muted-foreground">
+              RN Expo Starter
+            </Text>
+          </View>
+
+          {/* Heading */}
+          <View className="gap-1.5">
+            <Text className="text-3xl font-bold tracking-tight">
               <Trans>Sign in to your account</Trans>
             </Text>
-            <Text className="text-center text-sm text-muted-foreground sm:text-left">
+            <Text variant="muted">
               <Trans>Welcome back! Please sign in to continue</Trans>
             </Text>
           </View>
 
-          <View className="gap-6">
-            {/* Email Field */}
+          {/* Form */}
+          <View className="gap-5">
             <View className="gap-1.5">
               <Label htmlFor="email">
                 <Trans>Email</Trans>
@@ -121,7 +132,6 @@ export default function SignInScreen() {
               )}
             </View>
 
-            {/* Password Field */}
             <View className="gap-1.5">
               <View className="flex-row items-center justify-between">
                 <Label htmlFor="password">
@@ -157,7 +167,6 @@ export default function SignInScreen() {
               )}
             </View>
 
-            {/* Submit Button */}
             <Button
               className="w-full"
               onPress={handleSubmit(onSubmit)}
@@ -173,9 +182,9 @@ export default function SignInScreen() {
             </Button>
           </View>
 
-          <View className="flex-row flex-wrap items-center justify-center">
-            <Text className="text-sm">
-              <Trans>Don&apos;t have an account?</Trans>{' '}
+          <View className="flex-row flex-wrap items-center justify-center gap-1">
+            <Text className="text-sm text-muted-foreground">
+              <Trans>Don&apos;t have an account?</Trans>
             </Text>
             <Link href="/auth/signup">
               <Text className="text-sm text-primary underline underline-offset-4">
@@ -184,9 +193,9 @@ export default function SignInScreen() {
             </Link>
           </View>
 
-          <View className="flex-row items-center">
+          <View className="flex-row items-center gap-3">
             <Separator className="flex-1" />
-            <Text className="px-4 text-sm text-muted-foreground">
+            <Text className="text-sm text-muted-foreground">
               <Trans>or</Trans>
             </Text>
             <Separator className="flex-1" />
@@ -195,6 +204,6 @@ export default function SignInScreen() {
           <SSOBtns />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }

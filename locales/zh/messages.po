@@ -6,323 +6,376 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: zh\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
 #: app/auth/signup.tsx
 msgid "Account created successfully!"
-msgstr ""
+msgstr "账户创建成功！"
 
 #: app/auth/signup.tsx
 msgid "Account creation failed"
-msgstr ""
+msgstr "账户创建失败"
 
 #: app/auth/signup.tsx
 msgid "Already have an account?"
-msgstr ""
+msgstr "已有账户？"
+
+#: app/(tabs)/home.tsx
+#: app/(tabs)/setting.tsx
+msgid "Appearance"
+msgstr "外观"
+
+#: app/(tabs)/chats.tsx
+msgid "Auth-gated Features"
+msgstr "权限功能演示"
 
 #: app/(tabs)/_layout.tsx
 #: app/(tabs)/chats.tsx
 msgid "Chats"
-msgstr ""
+msgstr "聊天"
 
 #: app/(tabs)/setting.tsx
-msgid "Chinese"
-msgstr ""
+#~ msgid "Chinese"
+#~ msgstr ""
 
 #: app/auth/update-password.tsx
 msgid "Confirm password"
-msgstr ""
+msgstr "确认密码"
 
 #: app/auth/signup.tsx
 msgid "Confirm Password"
-msgstr ""
+msgstr "确认密码"
 
 #: app/auth/signin.tsx
 msgid "Continue"
-msgstr ""
+msgstr "继续"
 
 #: app/index.tsx
 msgid "Continue as guest"
-msgstr ""
+msgstr "以访客身份继续"
 
 #: components/sso-btns.tsx
 msgid "Continue with Apple"
-msgstr ""
+msgstr "通过 Apple 继续"
 
 #: app/index.tsx
 msgid "Continue with Email"
-msgstr ""
+msgstr "通过邮箱继续"
 
 #: components/sso-btns.tsx
 msgid "Continue with Google"
-msgstr ""
+msgstr "通过 Google 继续"
 
 #: app/auth/signup.tsx
 msgid "Create account"
-msgstr ""
+msgstr "创建账户"
 
 #: app/auth/signup.tsx
 msgid "Create your account"
-msgstr ""
+msgstr "创建您的账户"
 
 #: app/auth/signup.tsx
 msgid "Creating account..."
-msgstr ""
+msgstr "正在创建账户..."
 
 #: app/index.tsx
 msgid ""
 "Discover Endless\n"
 "Possibilities with"
 msgstr ""
+"探索无限\n"
+"可能，来自"
 
 #: app/auth/signin.tsx
 msgid "Don't have an account?"
-msgstr ""
+msgstr "还没有账户？"
 
 #: app/auth/forgot-password.tsx
 #: app/auth/signin.tsx
 #: app/auth/signup.tsx
 msgid "Email"
-msgstr ""
+msgstr "邮箱"
 
 #: app/auth/forgot-password.tsx
 #: app/auth/signin.tsx
 #: app/auth/signup.tsx
 msgid "Email is required"
-msgstr ""
-
-#. placeholder {0}: user?.email ?? ''
-#: app/(tabs)/setting.tsx
-msgid "Email: {0}"
-msgstr ""
+msgstr "邮箱不能为空"
 
 #: app/(tabs)/setting.tsx
-msgid "English"
-msgstr ""
+#~ msgid "Email: {0}"
+#~ msgstr ""
+
+#: app/(tabs)/setting.tsx
+#~ msgid "English"
+#~ msgstr ""
 
 #: app/auth/forgot-password.tsx
 msgid "Enter your email to reset your password"
-msgstr ""
+msgstr "输入邮箱以重置密码"
 
 #: app/auth/update-password.tsx
 msgid "Enter your new password below"
-msgstr ""
+msgstr "在下方输入新密码"
 
 #: app/(tabs)/_layout.tsx
-#: app/(tabs)/explore.tsx
 msgid "Explore"
-msgstr ""
+msgstr "探索"
 
 #: app/auth/update-password.tsx
 msgid "Failed to reset password"
-msgstr ""
+msgstr "重置密码失败"
 
 #: app/auth/forgot-password.tsx
 msgid "Failed to send reset email"
-msgstr ""
+msgstr "发送重置邮件失败"
 
 #: app/auth/forgot-password.tsx
 msgid "Forgot password?"
-msgstr ""
+msgstr "忘记密码？"
 
 #: app/auth/signin.tsx
 msgid "Forgot your password?"
-msgstr ""
+msgstr "忘记密码了？"
 
 #: app/modal.tsx
 msgid "Go to home screen"
-msgstr ""
+msgstr "返回主页"
+
+#: app/(tabs)/setting.tsx
+msgid "Guest"
+msgstr "访客"
 
 #: app/(tabs)/_layout.tsx
 msgid "Home"
-msgstr ""
+msgstr "主页"
 
 #: app/auth/forgot-password.tsx
 #: app/auth/signin.tsx
 #: app/auth/signup.tsx
 msgid "Invalid email address"
-msgstr ""
+msgstr "邮箱格式不正确"
 
 #: app/auth/update-password.tsx
 msgid "Invalid or missing reset token"
-msgstr ""
+msgstr "重置令牌无效或缺失"
 
-#. placeholder {0}: isAnonymous ? 'Yes' : 'No'
 #: app/(tabs)/setting.tsx
-msgid "Is Anonymous: {0}"
-msgstr ""
+#~ msgid "Is Anonymous: {0}"
+#~ msgstr ""
 
 #: app/auth/signup.tsx
 msgid "John Doe"
-msgstr ""
+msgstr "张三"
+
+#: app/(tabs)/home.tsx
+#: app/(tabs)/setting.tsx
+msgid "Language"
+msgstr "语言"
 
 #: app/(tabs)/explore.tsx
-msgid "Learn more"
-msgstr ""
+#~ msgid "Learn more"
+#~ msgstr ""
 
 #: app/auth/signin.tsx
 msgid "Logged in successfully!"
-msgstr ""
+msgstr "登录成功！"
 
 #: app/auth/signin.tsx
 msgid "Login failed"
-msgstr ""
+msgstr "登录失败"
 
 #: app/auth/forgot-password.tsx
 #: app/auth/signin.tsx
 #: app/auth/signup.tsx
 msgid "m@example.com"
-msgstr ""
+msgstr "m@example.com"
 
 #: app/(tabs)/home.tsx
-msgid "Modal"
-msgstr ""
+#~ msgid "Modal"
+#~ msgstr ""
 
 #: app/auth/signup.tsx
 msgid "Name"
-msgstr ""
+msgstr "姓名"
 
 #: app/auth/signup.tsx
 msgid "Name is required"
-msgstr ""
+msgstr "姓名不能为空"
 
 #: app/auth/update-password.tsx
 msgid "New password"
-msgstr ""
+msgstr "新密码"
+
+#: app/(tabs)/chats.tsx
+msgid "No chats yet"
+msgstr "暂无聊天"
+
+#: app/(tabs)/explore.tsx
+msgid "Official docs for the stack"
+msgstr "技术栈的官方文档"
 
 #: app/(tabs)/chats.tsx
 msgid "Open protected chat(Route)"
-msgstr ""
+msgstr "打开受保护的聊天（路由）"
 
 #: app/auth/signin.tsx
 #: app/auth/signup.tsx
 msgid "or"
-msgstr ""
+msgstr "或"
 
 #: app/auth/signin.tsx
 #: app/auth/signup.tsx
 msgid "Password"
-msgstr ""
+msgstr "密码"
 
 #: app/auth/signin.tsx
 msgid "Password is required"
-msgstr ""
+msgstr "密码不能为空"
 
 #: app/auth/signup.tsx
 #: app/auth/update-password.tsx
 msgid "Password must be at least 8 characters"
-msgstr ""
+msgstr "密码至少需要 8 个字符"
 
 #: app/auth/update-password.tsx
 msgid "Password updated successfully!"
-msgstr ""
+msgstr "密码更新成功！"
 
 #: app/auth/signup.tsx
 #: app/auth/update-password.tsx
 msgid "Passwords do not match"
-msgstr ""
+msgstr "两次密码不一致"
 
 #: app/auth/signup.tsx
 #: app/auth/update-password.tsx
 msgid "Please confirm your password"
-msgstr ""
+msgstr "请确认您的密码"
 
 #: app/(tabs)/home.tsx
-msgid "Press below to open the modal, Long press to see the preview and menu"
-msgstr ""
+#~ msgid "Press below to open the modal, Long press to see the preview and menu"
+#~ msgstr ""
+
+#: app/(tabs)/home.tsx
+msgid "Production-ready React Native template"
+msgstr "开箱即用的 React Native 模板"
 
 #: app/(tabs)/chats.tsx
 msgid "Protected action"
-msgstr ""
+msgstr "受保护的操作"
 
 #: app/(tabs)/chats.tsx
-msgid "Protected action and route"
-msgstr ""
+#~ msgid "Protected action and route"
+#~ msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "Protected actions and routes demo"
+msgstr "受保护操作与路由演示"
 
 #: app/auth/forgot-password.tsx
 #: app/auth/update-password.tsx
 msgid "Remember your password?"
-msgstr ""
+msgstr "想起密码了？"
 
 #: app/auth/forgot-password.tsx
 msgid "Reset email sent! Please check your inbox."
-msgstr ""
+msgstr "重置邮件已发送！请检查收件箱。"
 
 #: app/auth/update-password.tsx
 msgid "Reset password"
-msgstr ""
+msgstr "重置密码"
+
+#: app/(tabs)/explore.tsx
+msgid "Resources"
+msgstr "资源"
 
 #: app/auth/forgot-password.tsx
 msgid "Send reset link"
-msgstr ""
+msgstr "发送重置链接"
 
 #: app/auth/forgot-password.tsx
 msgid "Sending..."
-msgstr ""
+msgstr "发送中..."
 
 #: app/(tabs)/_layout.tsx
-#: app/(tabs)/setting.tsx
 msgid "Setting"
-msgstr ""
+msgstr "设置"
+
+#: app/(tabs)/setting.tsx
+msgid "Settings"
+msgstr "设置"
 
 #: app/auth/forgot-password.tsx
 #: app/auth/signup.tsx
 #: app/auth/update-password.tsx
 msgid "Sign in"
-msgstr ""
+msgstr "登录"
 
 #: app/auth/signin.tsx
 msgid "Sign in to your account"
-msgstr ""
+msgstr "登录您的账户"
 
 #: app/(tabs)/setting.tsx
 msgid "Sign out"
-msgstr ""
+msgstr "退出登录"
 
 #: app/auth/signin.tsx
 msgid "Sign up"
-msgstr ""
+msgstr "注册"
+
+#: app/(tabs)/home.tsx
+msgid "Stack"
+msgstr "技术栈"
 
 #: app/index.tsx
 msgid "Starter"
-msgstr ""
+msgstr "Starter"
 
 #: app/auth/signin.tsx
 msgid "Submitting..."
-msgstr ""
+msgstr "提交中..."
 
 #: app/modal.tsx
 msgid "This is a modal"
-msgstr ""
+msgstr "这是一个弹窗"
 
 #: app/(tabs)/chats.tsx
-msgid "To be continued..."
-msgstr ""
+#~ msgid "To be continued..."
+#~ msgstr ""
 
 #: app/auth/update-password.tsx
 msgid "Update password"
-msgstr ""
+msgstr "更新密码"
 
 #: app/auth/update-password.tsx
 msgid "Updating..."
-msgstr ""
+msgstr "更新中..."
 
-#. placeholder {0}: user?.name ?? ''
 #: app/(tabs)/setting.tsx
-msgid "User Name: {0} "
-msgstr ""
+#~ msgid "User Name: {0} "
+#~ msgstr ""
 
 #: app/auth/signin.tsx
 msgid "Welcome back! Please sign in to continue"
-msgstr ""
+msgstr "欢迎回来！请登录以继续"
 
 #: app/(tabs)/home.tsx
-msgid "Welcome!"
-msgstr ""
+#~ msgid "Welcome!"
+#~ msgstr ""
 
 #: app/auth/signup.tsx
 msgid "Welcome! Please fill in the details to get started."
-msgstr ""
+msgstr "欢迎！请填写信息以开始使用。"
 
 #: app/index.tsx
 msgid "Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Starter"
-msgstr ""
+msgstr "创意与创新的交汇：用 Starter 开启无限探索之旅"
+
+#: app/(tabs)/chats.tsx
+msgid "Your conversations will appear here"
+msgstr "您的对话将在这里显示"

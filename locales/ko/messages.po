@@ -6,6 +6,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: ko\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
 #: app/auth/signup.tsx
 msgid "Account created successfully!"
@@ -19,14 +25,23 @@ msgstr ""
 msgid "Already have an account?"
 msgstr ""
 
+#: app/(tabs)/home.tsx
+#: app/(tabs)/setting.tsx
+msgid "Appearance"
+msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "Auth-gated Features"
+msgstr ""
+
 #: app/(tabs)/_layout.tsx
 #: app/(tabs)/chats.tsx
 msgid "Chats"
 msgstr ""
 
 #: app/(tabs)/setting.tsx
-msgid "Chinese"
-msgstr ""
+#~ msgid "Chinese"
+#~ msgstr ""
 
 #: app/auth/update-password.tsx
 msgid "Confirm password"
@@ -90,14 +105,13 @@ msgstr ""
 msgid "Email is required"
 msgstr ""
 
-#. placeholder {0}: user?.email ?? ''
 #: app/(tabs)/setting.tsx
-msgid "Email: {0}"
-msgstr ""
+#~ msgid "Email: {0}"
+#~ msgstr ""
 
 #: app/(tabs)/setting.tsx
-msgid "English"
-msgstr ""
+#~ msgid "English"
+#~ msgstr ""
 
 #: app/auth/forgot-password.tsx
 msgid "Enter your email to reset your password"
@@ -108,7 +122,6 @@ msgid "Enter your new password below"
 msgstr ""
 
 #: app/(tabs)/_layout.tsx
-#: app/(tabs)/explore.tsx
 msgid "Explore"
 msgstr ""
 
@@ -132,6 +145,10 @@ msgstr ""
 msgid "Go to home screen"
 msgstr ""
 
+#: app/(tabs)/setting.tsx
+msgid "Guest"
+msgstr ""
+
 #: app/(tabs)/_layout.tsx
 msgid "Home"
 msgstr ""
@@ -146,18 +163,22 @@ msgstr ""
 msgid "Invalid or missing reset token"
 msgstr ""
 
-#. placeholder {0}: isAnonymous ? 'Yes' : 'No'
 #: app/(tabs)/setting.tsx
-msgid "Is Anonymous: {0}"
-msgstr ""
+#~ msgid "Is Anonymous: {0}"
+#~ msgstr ""
 
 #: app/auth/signup.tsx
 msgid "John Doe"
 msgstr ""
 
-#: app/(tabs)/explore.tsx
-msgid "Learn more"
+#: app/(tabs)/home.tsx
+#: app/(tabs)/setting.tsx
+msgid "Language"
 msgstr ""
+
+#: app/(tabs)/explore.tsx
+#~ msgid "Learn more"
+#~ msgstr ""
 
 #: app/auth/signin.tsx
 msgid "Logged in successfully!"
@@ -174,8 +195,8 @@ msgid "m@example.com"
 msgstr ""
 
 #: app/(tabs)/home.tsx
-msgid "Modal"
-msgstr ""
+#~ msgid "Modal"
+#~ msgstr ""
 
 #: app/auth/signup.tsx
 msgid "Name"
@@ -187,6 +208,14 @@ msgstr ""
 
 #: app/auth/update-password.tsx
 msgid "New password"
+msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "No chats yet"
+msgstr ""
+
+#: app/(tabs)/explore.tsx
+msgid "Official docs for the stack"
 msgstr ""
 
 #: app/(tabs)/chats.tsx
@@ -227,7 +256,11 @@ msgid "Please confirm your password"
 msgstr ""
 
 #: app/(tabs)/home.tsx
-msgid "Press below to open the modal, Long press to see the preview and menu"
+#~ msgid "Press below to open the modal, Long press to see the preview and menu"
+#~ msgstr ""
+
+#: app/(tabs)/home.tsx
+msgid "Production-ready React Native template"
 msgstr ""
 
 #: app/(tabs)/chats.tsx
@@ -235,7 +268,11 @@ msgid "Protected action"
 msgstr ""
 
 #: app/(tabs)/chats.tsx
-msgid "Protected action and route"
+#~ msgid "Protected action and route"
+#~ msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "Protected actions and routes demo"
 msgstr ""
 
 #: app/auth/forgot-password.tsx
@@ -251,6 +288,10 @@ msgstr ""
 msgid "Reset password"
 msgstr ""
 
+#: app/(tabs)/explore.tsx
+msgid "Resources"
+msgstr ""
+
 #: app/auth/forgot-password.tsx
 msgid "Send reset link"
 msgstr ""
@@ -260,8 +301,11 @@ msgid "Sending..."
 msgstr ""
 
 #: app/(tabs)/_layout.tsx
-#: app/(tabs)/setting.tsx
 msgid "Setting"
+msgstr ""
+
+#: app/(tabs)/setting.tsx
+msgid "Settings"
 msgstr ""
 
 #: app/auth/forgot-password.tsx
@@ -282,6 +326,10 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
+#: app/(tabs)/home.tsx
+msgid "Stack"
+msgstr ""
+
 #: app/index.tsx
 msgid "Starter"
 msgstr ""
@@ -295,8 +343,8 @@ msgid "This is a modal"
 msgstr ""
 
 #: app/(tabs)/chats.tsx
-msgid "To be continued..."
-msgstr ""
+#~ msgid "To be continued..."
+#~ msgstr ""
 
 #: app/auth/update-password.tsx
 msgid "Update password"
@@ -306,18 +354,17 @@ msgstr ""
 msgid "Updating..."
 msgstr ""
 
-#. placeholder {0}: user?.name ?? ''
 #: app/(tabs)/setting.tsx
-msgid "User Name: {0} "
-msgstr ""
+#~ msgid "User Name: {0} "
+#~ msgstr ""
 
 #: app/auth/signin.tsx
 msgid "Welcome back! Please sign in to continue"
 msgstr ""
 
 #: app/(tabs)/home.tsx
-msgid "Welcome!"
-msgstr ""
+#~ msgid "Welcome!"
+#~ msgstr ""
 
 #: app/auth/signup.tsx
 msgid "Welcome! Please fill in the details to get started."
@@ -325,4 +372,8 @@ msgstr ""
 
 #: app/index.tsx
 msgid "Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Starter"
+msgstr ""
+
+#: app/(tabs)/chats.tsx
+msgid "Your conversations will appear here"
 msgstr ""

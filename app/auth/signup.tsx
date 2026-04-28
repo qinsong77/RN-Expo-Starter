@@ -3,10 +3,10 @@ import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { Link, router } from 'expo-router'
+import { Rocket } from 'lucide-react-native'
 import * as React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, type TextInput, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { z } from 'zod'
 
 import { SSOBtns } from '@/components/sso-btns'
@@ -56,22 +56,15 @@ export default function SignUpScreen() {
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     mode: 'onTouched',
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
+    defaultValues: { name: '', email: '', password: '', confirmPassword: '' },
   })
 
   function onNameSubmitEditing() {
     emailInputRef.current?.focus()
   }
-
   function onEmailSubmitEditing() {
     passwordInputRef.current?.focus()
   }
-
   function onPasswordSubmitEditing() {
     confirmPasswordInputRef.current?.focus()
   }
@@ -96,25 +89,39 @@ export default function SignUpScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View className="flex-1 pt-safe pb-safe">
       <ScrollView
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="interactive"
         automaticallyAdjustKeyboardInsets
       >
-        <View className="mt-10 w-full gap-6 p-6 md:mt-16">
-          <View className="gap-2">
-            <Text className="text-center text-xl font-semibold sm:text-left">
+        <View className="w-full gap-5 p-5 pt-6">
+          {/* Brand mark */}
+          <View className="flex-row items-center gap-2.5">
+            <View className="h-8 w-8 items-center justify-center rounded-lg bg-primary">
+              <Rocket
+                size={15}
+                color="white"
+              />
+            </View>
+            <Text className="text-sm font-semibold text-muted-foreground">
+              RN Expo Starter
+            </Text>
+          </View>
+
+          {/* Heading */}
+          <View className="gap-1.5">
+            <Text className="text-3xl font-bold tracking-tight">
               <Trans>Create your account</Trans>
             </Text>
-            <Text className="text-center text-sm text-muted-foreground sm:text-left">
+            <Text variant="muted">
               <Trans>Welcome! Please fill in the details to get started.</Trans>
             </Text>
           </View>
 
-          <View className="gap-6 md:gap-8">
-            {/* Name Field */}
-            <View className="gap-1.5 md:gap-2">
+          {/* Form */}
+          <View className="gap-4">
+            <View className="gap-1.5">
               <Label htmlFor="name">
                 <Trans>Name</Trans>
               </Label>
@@ -144,8 +151,7 @@ export default function SignUpScreen() {
               )}
             </View>
 
-            {/* Email Field */}
-            <View className="gap-1.5 md:gap-2">
+            <View className="gap-1.5">
               <Label htmlFor="email">
                 <Trans>Email</Trans>
               </Label>
@@ -177,8 +183,7 @@ export default function SignUpScreen() {
               )}
             </View>
 
-            {/* Password Field */}
-            <View className="gap-1.5 md:gap-2">
+            <View className="gap-1.5">
               <Label htmlFor="password">
                 <Trans>Password</Trans>
               </Label>
@@ -206,8 +211,7 @@ export default function SignUpScreen() {
               )}
             </View>
 
-            {/* Confirm Password Field */}
-            <View className="gap-1.5 md:gap-2">
+            <View className="gap-1.5">
               <Label htmlFor="confirmPassword">
                 <Trans>Confirm Password</Trans>
               </Label>
@@ -237,7 +241,6 @@ export default function SignUpScreen() {
               )}
             </View>
 
-            {/* Submit Button */}
             <Button
               className="w-full"
               onPress={handleSubmit(onSubmit)}
@@ -253,9 +256,9 @@ export default function SignUpScreen() {
             </Button>
           </View>
 
-          <View className="flex-row flex-wrap items-center justify-center">
-            <Text className="text-sm">
-              <Trans>Already have an account?</Trans>{' '}
+          <View className="flex-row flex-wrap items-center justify-center gap-1">
+            <Text className="text-sm text-muted-foreground">
+              <Trans>Already have an account?</Trans>
             </Text>
             <Link
               href="/auth/signin"
@@ -267,9 +270,9 @@ export default function SignUpScreen() {
             </Link>
           </View>
 
-          <View className="flex-row items-center">
+          <View className="flex-row items-center gap-3">
             <Separator className="flex-1" />
-            <Text className="px-4 text-sm text-muted-foreground">
+            <Text className="text-sm text-muted-foreground">
               <Trans>or</Trans>
             </Text>
             <Separator className="flex-1" />
@@ -278,6 +281,6 @@ export default function SignUpScreen() {
           <SSOBtns />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }

@@ -59,11 +59,13 @@ Updating React Native is tied to the Expo SDK; see [Upgrade Expo SDK](https://do
 
 ### Skills
 
+Update skills by `npx skills update -p`
+
 - [Expo Skills for AI agents](https://docs.expo.dev/skills/)
 - [vercel-react-native-skills](https://skills.sh/vercel-labs/agent-skills/vercel-react-native-skills)
   - react-best-practices
   - composition-patterns
-- [uniwind](https://docs.uniwind.dev/): docs for LLMs / MCP (see site)
+- [uniwind](https://docs.uniwind.dev/skills)
 
 ## Todo
 
@@ -112,7 +114,7 @@ These are the resources that I found useful and want to share with you.
 
 - [reanimated](https://github.com/software-mansion/react-native-reanimated/)
 - [lottie](https://github.com/lottie-react-native/lottie-react-native)
-  - [resource-lottiefiles](https://lottiefiles.com/)
+  - [resource-lottie files](https://lottiefiles.com/)
 
 ### Libraries
 
@@ -293,12 +295,12 @@ Logging uses [react-native-logs](https://github.com/mowispace/react-native-logs)
 
 - **Import**: Prefer `createLog('namespace')` at module scope (e.g. `const log = createLog('rpc')`) so messages show a short label in the console. Use the exported `log` only when a single global logger is enough.
 - **Levels** (lowest to highest): `debug` → `info` → `warn` → `error`. In **production** release builds, minimum severity is `info` (`__DEV__` is false), so `log.debug` does not run—put noisy or detailed traces behind `debug` only.
-- **Do not** log secrets, tokens, or full PII. For more sinks (file, remote), add a [custom transport](https://github.com/mowispace/react-native-logs#custom-transport) in `core/logger.ts` and keep the same `createLog` / `log` API.
+- **Do not** log secrets, tokens, or full PII. For more sinks (file, remote), add [custom transport](https://github.com/mowispace/react-native-logs#custom-transport) in `core/logger.ts` and keep the same `createLog` / `log` API.
 
 ### Notes
 
 - When you need native code beyond Expo Go, use [development builds](https://docs.expo.dev/develop/development-builds/introduction/) with `expo-dev-client`; see [Create a development build](https://docs.expo.dev/develop/development-builds/create-a-build/).
-- Don't wrap your whole app in SafeAreaView, instead apply the styles to content inside your screens, from: [reactnavigation-summary](https://reactnavigation.org/docs/handling-safe-area/#summary)
+- Don't wrap your whole app under `SafeAreaView`, instead apply the styles to content inside your screens, from: [reactnavigation-summary](https://reactnavigation.org/docs/handling-safe-area/#summary)
 
 ## Chore
 
@@ -317,7 +319,7 @@ Logging uses [react-native-logs](https://github.com/mowispace/react-native-logs)
 
 `AppClientType` is imported from the backend project via the `@server/*` path alias in `tsconfig.json`, which points directly to the backend source:
 
-```json
+```
 "@server/*": ["../cloudflare-workers-d1-hono-drizzle-better-auth-template/src/*"]
 ```
 

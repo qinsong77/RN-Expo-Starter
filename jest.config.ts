@@ -1,4 +1,5 @@
 import type { Config } from 'jest'
+
 /*
   https://docs.expo.dev/develop/unit-testing/
  */

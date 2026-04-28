@@ -3,10 +3,10 @@ import { i18n } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { Link } from 'expo-router'
+import { ArrowLeft } from 'lucide-react-native'
 import * as React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -14,6 +14,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from '@/components/ui/sonner'
 import { Text } from '@/components/ui/text'
+
+import { useThemeColors } from '@/hooks/use-theme-colors'
 
 import { authClient } from '@/core/auth'
 import { createLog } from '@/core/logger'
@@ -30,6 +32,7 @@ type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>
 
 export default function ForgotPasswordScreen() {
   const { t } = useLingui()
+  const colors = useThemeColors()
 
   const {
     control,
@@ -39,9 +42,7 @@ export default function ForgotPasswordScreen() {
   } = useForm<ForgotPasswordFormData>({
     resolver: zodResolver(forgotPasswordSchema),
     mode: 'onTouched',
-    defaultValues: {
-      email: '',
-    },
+    defaultValues: { email: '' },
   })
 
   async function onSubmit(formData: ForgotPasswordFormData) {
@@ -62,24 +63,43 @@ export default function ForgotPasswordScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View className="flex-1 pt-safe pb-safe">
       <ScrollView
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="interactive"
         automaticallyAdjustKeyboardInsets
       >
-        <View className="mt-10 w-full gap-6 p-6 md:mt-16">
-          <View className="gap-2">
-            <Text className="text-center text-xl font-semibold sm:text-left">
+        <View className="w-full gap-8 p-6 pt-8">
+          {/* Back */}
+          <Link
+            href="/auth/signin"
+            replace
+            asChild
+          >
+            <Button
+              variant="ghost"
+              size="icon"
+              className="self-start"
+            >
+              <ArrowLeft
+                size={20}
+                color={colors.foreground}
+              />
+            </Button>
+          </Link>
+
+          {/* Heading */}
+          <View className="gap-1.5">
+            <Text className="text-3xl font-bold tracking-tight">
               <Trans>Forgot password?</Trans>
             </Text>
-            <Text className="text-center text-sm text-muted-foreground sm:text-left">
+            <Text variant="muted">
               <Trans>Enter your email to reset your password</Trans>
             </Text>
           </View>
 
-          <View className="gap-6">
-            {/* Email Field */}
+          {/* Form */}
+          <View className="gap-5">
             <View className="gap-1.5">
               <Label htmlFor="email">
                 <Trans>Email</Trans>
@@ -111,7 +131,6 @@ export default function ForgotPasswordScreen() {
               )}
             </View>
 
-            {/* Submit Button */}
             <Button
               className="w-full"
               onPress={handleSubmit(onSubmit)}
@@ -127,9 +146,9 @@ export default function ForgotPasswordScreen() {
             </Button>
           </View>
 
-          <View className="flex-row flex-wrap items-center justify-center">
-            <Text className="text-sm">
-              <Trans>Remember your password?</Trans>{' '}
+          <View className="flex-row flex-wrap items-center justify-center gap-1">
+            <Text className="text-sm text-muted-foreground">
+              <Trans>Remember your password?</Trans>
             </Text>
             <Link
               href="/auth/signin"
@@ -142,6 +161,6 @@ export default function ForgotPasswordScreen() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }

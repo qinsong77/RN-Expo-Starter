@@ -4,12 +4,10 @@ import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { useUniwind } from 'uniwind'
+import { SafeAreaListener } from 'react-native-safe-area-context'
+import { Uniwind, useUniwind } from 'uniwind'
 
 import { NAV_THEME } from '@/constants/theme-nav'
-
-// Expo Router adds the <SafeAreaProvider /> to every route. This setup is not needed for root layout
-// import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import { Toaster } from '@/components/ui/sonner'
 
@@ -33,32 +31,34 @@ function AppContent() {
   const { theme } = useUniwind()
 
   return (
-    <ThemeProvider value={NAV_THEME[theme ?? 'light']}>
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="auth"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="(tabs)"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="(protected)"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="modal"
-          options={{ presentation: 'modal', title: 'Modal' }}
-        />
-      </Stack>
-      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
-      <Toaster />
-    </ThemeProvider>
+    <SafeAreaListener onChange={({ insets }) => Uniwind.updateInsets(insets)}>
+      <ThemeProvider value={NAV_THEME[theme ?? 'light']}>
+        <Stack>
+          <Stack.Screen
+            name="index"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="auth"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="(tabs)"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="(protected)"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="modal"
+            options={{ presentation: 'modal', title: 'Modal' }}
+          />
+        </Stack>
+        <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+        <Toaster />
+      </ThemeProvider>
+    </SafeAreaListener>
   )
 }
 
