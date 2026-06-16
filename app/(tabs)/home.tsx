@@ -21,7 +21,7 @@ import { type SupportedLocale, changeLanguage } from '@/core/i18n/lingui'
 type ThemeOption = 'system' | 'light' | 'dark'
 
 const FEATURES = [
-  { icon: Layers, label: 'Expo 55', desc: 'Latest SDK, React 19' },
+  { icon: Layers, label: 'Expo 56', desc: 'Latest SDK, React 19' },
   { icon: ShieldCheck, label: 'Better Auth', desc: 'Sign in, sign up, guest' },
   { icon: Globe, label: 'Lingui i18n', desc: 'EN & 中文' },
   { icon: Zap, label: 'Hono RPC', desc: 'Type-safe API + React Query' },

@@ -18,9 +18,6 @@ config.resolver = {
   sourceExts: [...resolver.sourceExts, 'po', 'pot'],
 }
 
-// https://www.better-auth.com/docs/integrations/expo#configure-metro-bundler
-config.resolver.unstable_enablePackageExports = true
-
 module.exports = withUniwindConfig(config, {
   // relative path to your global.css file (from previous step)
   cssEntryFile: './global.css',

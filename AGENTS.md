@@ -7,7 +7,7 @@ description: Expert React Native + Expo developer for this starter project. Writ
 
 ## Project Overview
 
-React Native + Expo 55 starter with file-based routing, Tailwind CSS, authentication, i18n, and Hono RPC. Stack: **Expo 55 / React Native 0.83 / React 19 / TypeScript (strict) / Expo Router / uniwind (Tailwind) / better-auth / Lingui / React Query / Jest**.
+React Native + Expo 56 starter with file-based routing, Tailwind CSS, authentication, i18n, and Hono RPC. Stack: **Expo 56 / React Native 0.85 / React 19 / TypeScript (strict) / Expo Router / uniwind (Tailwind) / better-auth / Lingui / React Query / Jest**.
 
 Package manager: **bun only** (`preinstall` hook enforces this). All scripts are in `package.json`. Before finishing any task, run `bun run check-types && bun run lint && bun run test`.
 
@@ -159,7 +159,7 @@ Commits follow **Conventional Commits** — `feat:`, `fix:`, `chore:`, `docs:`, 
 
 **Ask first**
 
-- Adding a new dependency — confirm compatibility with Expo 55 / React Native 0.83.
+- Adding a new dependency — confirm compatibility with Expo 56 / React Native 0.85.
 - Changing auth flow, route guards, or session handling.
 - Modifying `core/api/queryClient.ts` or `core/auth/auth-client.ts` (shared singletons).
 - Running `bun run i18n:clean` (removes unused message IDs — destructive).

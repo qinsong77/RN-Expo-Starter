@@ -28,27 +28,25 @@ describe('useProtectedAction', () => {
     jest.clearAllMocks()
   })
 
-  it('should call the callback if the user is authenticated and not a guest', () => {
+  it('should call the callback if the user is authenticated and not a guest', async () => {
     // Mock the useAuth hook to return authenticated and not guest
     ;(useAuth as jest.Mock).mockReturnValue({
       isAuthenticated: true,
       isAnonymous: false,
     })
 
-    const { result } = renderHook(() => useProtectedAction())
+    const { result } = await renderHook(() => useProtectedAction())
 
     const mockCallback = jest.fn()
     const protectedAction = result.current(mockCallback)
 
-    act(() => {
-      protectedAction('arg1', 'arg2')
-    })
+    protectedAction('arg1', 'arg2')
 
     expect(mockCallback).toHaveBeenCalledWith(['arg1', 'arg2'])
     expect(Alert.alert).not.toHaveBeenCalled()
   })
 
-  it('should show an alert and navigate to sign-in if the user is not authenticated or is a guest', () => {
+  it('should show an alert and navigate to sign-in if the user is not authenticated or is a guest', async () => {
     // Mock the useAuth hook to return not authenticated or is guest
     ;(useAuth as jest.Mock).mockReturnValue({
       isAuthenticated: false,
@@ -58,14 +56,12 @@ describe('useProtectedAction', () => {
     // Mock the usePathname to return a specific path
     ;(usePathname as jest.Mock).mockReturnValue('/current-path')
 
-    const { result } = renderHook(() => useProtectedAction())
+    const { result } = await renderHook(() => useProtectedAction())
 
     const mockCallback = jest.fn()
     const protectedAction = result.current(mockCallback)
 
-    act(() => {
-      protectedAction('arg1', 'arg2')
-    })
+    protectedAction('arg1', 'arg2')
 
     expect(mockCallback).not.toHaveBeenCalled()
     expect(Alert.alert).toHaveBeenCalledWith(
@@ -86,9 +82,7 @@ describe('useProtectedAction', () => {
 
     // Simulate pressing the "OK" button on the alert
     const okButton = (Alert.alert as jest.Mock).mock.calls[0][2][1]
-    act(() => {
-      okButton.onPress()
-    })
+    okButton.onPress()
 
     expect(router.push).toHaveBeenCalledWith(
       '/auth/signin?redirect_url=/current-path',

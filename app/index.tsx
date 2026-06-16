@@ -9,7 +9,7 @@ import { Text } from '@/components/ui/text'
 
 import { authClient, useAuth } from '@/core/auth'
 
-const TAGS = ['Expo 55', 'Better Auth', 'Lingui', 'Uniwind', 'Hono RPC']
+const TAGS = ['Expo 56', 'Better Auth', 'Lingui', 'Uniwind', 'Hono RPC']
 
 export default function Welcome() {
   const { isPending, isAuthenticated } = useAuth()

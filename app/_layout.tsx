@@ -1,6 +1,6 @@
-import { ThemeProvider } from '@react-navigation/native'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { Stack } from 'expo-router'
+import { ThemeProvider } from 'expo-router/react-navigation'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
