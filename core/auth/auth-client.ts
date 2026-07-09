@@ -10,8 +10,8 @@ export const authClient = createAuthClient({
   plugins: [
     anonymousClient(),
     expoClient({
-      scheme: 'sidekickapp',
-      storagePrefix: 'sidekickapp',
+      scheme: 'rn-expo-starter',
+      storagePrefix: 'rn-expo-starter',
       storage: SecureStore,
     }),
   ],
